@@ -16,11 +16,12 @@ const app = express()
      app.use(morgan('dev'))
 
      //
-     app.use(express.urlencoded({ extended: false }))
+     // app.use(express.json({limit: '20mb'}))
+     // app.use(express.urlencoded({ limit: '20mb', parameterLimit: 100000, extended: true }))
      app.use(express.json())
-
+     app.use(express.urlencoded({ extended: false }))
      //routes
-     // las rutas deben estar siempre después de la definición de CORS
+     // las rutas deben estar siempre después de la definición del CORS
      app.use('/api',router)
 
      //
