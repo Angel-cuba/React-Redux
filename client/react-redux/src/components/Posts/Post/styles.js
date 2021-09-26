@@ -40,6 +40,8 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '20px',
+    flexDirection: 'column',
+    textAlign: 'right',
   },
   title: {
     padding: '0 16px',
@@ -49,4 +51,8 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  title1: {
+    marginTop: 10,
+    color: 'crimson',
+  }
 });
