@@ -22,12 +22,15 @@ export default makeStyles(() => ({
     right: 30
   },
   container: {
-    backgroundColor: '#09203f',
+    //backgroundColor: '#09203f',
     borderRadius: 15,
     paddingTop: 1,
   },
   typography: {
     color: '#03c8a8'
+  },
+  content: {
+    marginTop: 30
   }
 
 }));

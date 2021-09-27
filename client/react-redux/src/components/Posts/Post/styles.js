@@ -54,5 +54,11 @@ export default makeStyles({
   title1: {
     marginTop: 10,
     color: 'crimson',
+  },
+  buttonDelete: {
+    backgroundColor: 'red',
+  },
+  color:{
+    color: '#b34930'
   }
 });
