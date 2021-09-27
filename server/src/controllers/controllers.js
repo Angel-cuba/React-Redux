@@ -1,10 +1,11 @@
 const ctrl = {}
 import PostMessage from '../models/model'
+import mongoose from 'mongoose'
 
 ctrl.readPost = async (req, res) => {
      try {
           const postMessage = await PostMessage.find()
-          console.log(postMessage)
+          // console.log(postMessage)
 
           res.status(200).json(postMessage)
      } catch (error) {
@@ -27,12 +28,37 @@ ctrl.createPost = async(req, res) => {
 }
 
 
-ctrl.updatePost = (req, res) => {
-     res.send('Updating')
+ctrl.updatePost = async(req, res) => {
+     const { id: _id } = req.params
+     const body = req.body
+
+     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with this id')
+
+     const updatePost = await PostMessage.findByIdAndUpdate(_id, { ...body, _id }, { new: true})
+
+     res.json(updatePost)
+
+
 }
 
-ctrl.deletePost = (req, res) => {
-     res.send('Deleting')
+ctrl.likePost = async(req, res) => {
+    const { id: _id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Invalid post id')
+
+    const post = await PostMessage.findById(_id)
+    const updatePost= await PostMessage.findByIdAndUpdate(_id, { likeCount : post.likeCount + 1}, { new: true})
+
+    res.json(updatePost) 
+}
+
+ctrl.deletePost = async (req, res) => {
+    const { id: _id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Invalid post id')
+
+    await PostMessage.findByIdAndRemove(_id)
+    res.json({message: 'Post deleted'})
 }
 
 module.exports = ctrl
