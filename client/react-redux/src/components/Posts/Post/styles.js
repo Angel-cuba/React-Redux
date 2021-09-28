@@ -44,7 +44,7 @@ export default makeStyles({
     textAlign: 'right',
   },
   title: {
-    padding: '0 16px',
+    color: 'gray',
   },
   cardActions: {
     padding: '0 16px 8px 16px',

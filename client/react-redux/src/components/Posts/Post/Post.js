@@ -39,12 +39,13 @@ const Post = ({ post, setCurrentId }) => {
                      
                       <Typography className={classes.title1} variant="body2">{tags.map((tag) => `#${tag} `)}</Typography>
                       <CardContent>
-                           <Typography className={classes.title} variant="h5" gutterBottom>{message}</Typography>
+                           <Typography className={classes.title} component="p" variant="subtitle1">{message}</Typography>
                       </CardContent>
 
                       <CardActions className={classes.cardActions}>
                            <Button size="small" color="primary" onClick={ () => dispatch(likePost(_id))}>
-                                <ThumbUpAltIcon/>
+                                
+                                Like &nbsp;<ThumbUpAltIcon/>&nbsp;
                                 {likeCount}
                            </Button>
                            <Button className={classes.buttonDelete} fontSize="small" onClick={ () => dispatch(deletePost(_id))}>

@@ -23,19 +23,19 @@ const App = () => {
   return (
     <Container maxWidth="lg" className={classes.container}>
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.typography} variant="h2" align="center">Memories</Typography>
+        <Typography className={classes.typography} variant="h3" align="center">Memories</Typography>
         <img className={classes.image} src={memories} alt="" height="60"/>
         
       </AppBar>
       <Grow in>
           <Container className={classes.content}>
-              <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
-                <Grid item xs={12} sm={4}>
-                    <Form currentId={currentId} setCurrentId={setCurrentId}/>
+              <Grid container direction="column-reverse" justifyContent="space-around" alignItems="stretch" spacing={3}>
+                <Grid item xs={12} sm={12} lg={8}>
+                  <Posts setCurrentId={setCurrentId}/> 
                   </Grid>
-                  <Grid item xs={12} sm={7}>
-    
-                    <Posts setCurrentId={setCurrentId}/>
+                  <Grid className={classes.form} item xs={12} sm={6} lg={5}>
+                 <Form currentId={currentId} setCurrentId={setCurrentId}/>
+                    
                   </Grid>
                   
 
