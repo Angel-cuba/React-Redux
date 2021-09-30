@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema({
      title: String,
      message: String,
+     name: String,
      creator: String,
      tags: [String],
      selectedFile: String,
