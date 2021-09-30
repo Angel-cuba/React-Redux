@@ -1,5 +1,5 @@
 const ctrl = {}
-import PostMessage from '../models/model'
+import PostMessage from '../models/post.model'
 import mongoose from 'mongoose'
 
 ctrl.readPost = async (req, res) => {
@@ -44,10 +44,23 @@ ctrl.updatePost = async(req, res) => {
 ctrl.likePost = async(req, res) => {
     const { id: _id } = req.params
 
+    if(!req.userId) return res.json({ message: 'Unauthenticated'})
+
     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Invalid post id')
 
     const post = await PostMessage.findById(_id)
-    const updatePost= await PostMessage.findByIdAndUpdate(_id, { likeCount : post.likeCount + 1}, { new: true})
+
+     const index = post.likes.findIndex((_id) => _id === String(req.userId))
+    if(index === -1){
+         // like the post
+          post.likes.push(req.userId)
+    }else{
+         // dislike the post
+          post.likes = post.likes.filter((_id) => _id !== String(req.userId))
+    }
+
+    const updatePost= await PostMessage.findByIdAndUpdate(_id, post, { new: true})
+    //{ likeCount : post.likeCount + 1}
 
     res.json(updatePost) 
 }

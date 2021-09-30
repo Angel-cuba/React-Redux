@@ -3,7 +3,8 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 import { serverPORT } from './keytoserver/key'
-import router from './routes/routes'
+import router from './routes/post.routes'
+import userRouter from './routes/user.routes'
 
 const app = express()
 
@@ -22,7 +23,8 @@ const app = express()
      app.use(express.urlencoded({ extended: false }))
      //routes
      // las rutas deben estar siempre después de la definición del CORS
-     app.use('/api',router)
+     app.use('/api', router)
+     app.use('/api/user', userRouter)
 
      //
 export default app
