@@ -22,4 +22,21 @@ export default makeStyles(() => ({
     color: '#03c8a8',
     textDecoration: 'none',
   },
+  profile:{
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  purple: {
+    // position: 'absolute',
+    // right: 30,
+  },
+  toolbar: {
+    // display: 'flex',
+    // flexDirection: 'row',
+    width: 330,
+    // justifyContent: 'space-around', 
+
+  }
 }))

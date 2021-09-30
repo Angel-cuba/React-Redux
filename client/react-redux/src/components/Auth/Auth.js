@@ -2,25 +2,49 @@ import React, { useState } from 'react'
 import { Container, Avatar, Paper, Grid, Button, Typography, Icon} from '@material-ui/core'
 import { GoogleLogin } from 'react-google-login'
 
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Input from './Input'
+
+import { signin, signup } from '../../actions/auth';
 
 import useStyles from './styles'
 
 const Auth = () => {
      const classes = useStyles()
+     const dispatch = useDispatch()
+
+     const history = useHistory()
 
      const [showPassword, setShowPassword] = useState(false)
      const [isSignup, setSignup] = useState(false)
 
-     // const isSignup= true;
+
+     const initialState =  {
+          firstname: '', 
+          lastname: '', 
+          email: '', 
+          password: '', 
+          confirmpassword: '',
+     }
+     const [ formData, setFormData] = useState(initialState)
+
+     // const isSignup= true;event
 
      const handleSubmit = (event) => {
-
+               event.preventDefault()
+          console.log(formData);
+          if (isSignup){
+               dispatch(signup(formData, history))
+          } else {
+               dispatch(signin(formData, history))
+          }
      }
      
      const handleChange = (event) =>{
-
+        setFormData({...formData, [event.target.name] : event.target.value})
      }
      const handleShowPassword = () => setShowPassword((presShowPassword)=> !presShowPassword)
 
@@ -30,7 +54,21 @@ const Auth = () => {
           handleShowPassword(false)
           }
      const googleSuccess = async (res) => {
-               console.log(res)
+          // const result = res?.profileObj;
+               // console.log(res)
+              // console.log('TOKENID',res.tokenId);
+              // console.log('PROFILE',res.profileObj);
+               const profile = res.profileObj;
+               const tokenId = res.tokenId;
+
+               try {
+                    dispatch({ type: 'AUTH', data : { profile, tokenId } });
+
+                    history.push('/')
+
+               } catch (error) {
+                    console.log(error)
+               }
      }
 
      const googleFailure = (error) => {
