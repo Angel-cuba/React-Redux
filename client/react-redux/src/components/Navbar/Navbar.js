@@ -17,6 +17,7 @@ const location = useLocation()
 
 const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')))
 
+console.log(user)
 const logout = () => {
      dispatch({ type: 'LOGOUT' })
 
@@ -45,8 +46,8 @@ useEffect(() => {
                     {user ? (
                          <div className={classes.profile}>
                               
-                              <Typography className={classes.userName} variant="h6">Hello, {user.profile.name}</Typography>
-                              <Avatar className={classes.purple} alt={user.profile.givenName} src={user.profile.imageUrl}></Avatar> 
+                              <Typography className={classes.userName} variant="h6">Hello, {user.profile.name }</Typography>
+                             {/*  <Avatar className={classes.purple} alt={user.profile.givenName} src={user.profile.imageUrl}></Avatar>  */}
                               <Button className={classes.logout} variant="contained" color="secondary" onClick={logout}>Logout</Button>
                          </div>
                                )

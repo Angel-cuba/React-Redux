@@ -23,7 +23,7 @@ const Auth = () => {
 
 
      const initialState =  {
-          firstname: '', 
+          name: '', 
           lastname: '', 
           email: '', 
           password: '', 
@@ -92,7 +92,7 @@ const Auth = () => {
                          <Grid container spacing={2}>
                                    { isSignup && (
                                         <div>                                      
-                                             <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus />
+                                             <Input name="name" label="First Name" handleChange={handleChange} autoFocus />
                                              <Input name="lastname" label="Last Name" handleChange={handleChange} />
                                   
                                              

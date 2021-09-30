@@ -9,6 +9,9 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/post.actions'
 
+import { Link, useHistory, useLocation } from 'react-router-dom'
+
+
 import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
@@ -16,6 +19,8 @@ const Post = ({ post, setCurrentId }) => {
      const classes = useStyles()
      const { creator, title, createdAt, message, tags, likeCount,  _id } = post;
      const dispatch = useDispatch();
+
+     const history = useHistory();
      
      return (
           !post ? <CircularProgress/> : (

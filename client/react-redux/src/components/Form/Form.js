@@ -3,6 +3,8 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64'
 import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../actions/post.actions'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+
 
 import { useSelector } from 'react-redux'
 
@@ -12,7 +14,10 @@ import useStyles from './styles'
 const Form = ({ currentId, setCurrentId }) => {
      const classes = useStyles()
     const dispatch = useDispatch()
+    
+    const history = useHistory()
 
+const user = JSON.parse(localStorage.getItem('profile'))
 
 
     const [postData, setPostData] = useState({
@@ -32,37 +37,52 @@ const Form = ({ currentId, setCurrentId }) => {
          e.preventDefault()
 
          if(currentId){
-             dispatch(updatePost(currentId, postData))
+                
+             dispatch(updatePost(currentId, {...postData, name : user.profile.name}))
+             
          }else{
-            dispatch(createPost(postData)) 
+            
+            dispatch(createPost({...postData, name : user.profile.name})) 
+            history.push('/')
          }
-
-         Clear()
+            Clear()
+         
           
      }
      const Clear = () => {
             setCurrentId(null)
             setPostData({ 
-                creator: '',
+                // creator: '',
                 title: '',
                 message: '',
                 tags: '',
                 // selectedFile: ''
             })
      }
+
+    // if(!user.profile.name){
+    //     return (
+    //         <Paper className={classes.paper}>
+    //             <Typography variant="h6" align="center">
+    //                 Please create your own memories and like other's memories.
+    //             </Typography>
+    //         </Paper>
+    //     )
+    // }
+
      return (
          <Paper className={classes.paper}>
             
               <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
                     <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
-                    <TextField 
+                    {/* <TextField 
                     className={classes.textfield}
                     name="creator" 
                     variant="outlined" 
                     label="Creator" 
                     fullWidth
                     value={postData.creator}
-                    onChange={(e) => setPostData({...postData, creator : e.target.value })} />
+                    onChange={(e) => setPostData({...postData, creator : e.target.value })} /> */}
                      <TextField 
                     className={classes.textfield}
                     name="title" 
