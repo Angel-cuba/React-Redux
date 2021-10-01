@@ -24,5 +24,15 @@ export default makeStyles((theme) => ({
   },
   textfield: {
     marginBottom: 10,
+  },
+  letter: {
+    color: '#b02e0c',
+    padding: 20,
+    borderRadius: 15,
+    marginLeft: '30%',
+    backgroundColor: 'rgba(255,255,255,0.752)'
+  },
+  span: {
+    color: 'orange'
   }
 }));

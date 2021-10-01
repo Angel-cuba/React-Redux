@@ -11,15 +11,16 @@ export default makeStyles(() => ({
     alignContent: 'center',
     position: 'relative',
     backgroundColor: '#5e5c5c',
-    paddingLeft: 100
+    paddingLeft: 70
   },
    image: {
-    marginLeft: '5px',
+    marginLeft: '8px',
     borderRadius: 100,
+    // marginTop: '30px',
    
   },
     typography: {
-    color: '#03c8a8',
+    color: '#1e3b70',
     textDecoration: 'none',
   },
   profile:{
@@ -38,5 +39,13 @@ export default makeStyles(() => ({
     width: 330,
     // justifyContent: 'space-around', 
 
+  },
+  brandContainer:{
+    backgroundColor: 'rgba(255,255,255,.01)',
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 10
   }
 }))

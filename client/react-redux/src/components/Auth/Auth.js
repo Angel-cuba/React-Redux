@@ -18,7 +18,7 @@ const Auth = () => {
 
      const history = useHistory()
 
-     const [showPassword, setShowPassword] = useState(false)
+     const [showPassword, setShowPassword] = useState(true)
      const [isSignup, setSignup] = useState(false)
 
 
