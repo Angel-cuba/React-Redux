@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { AppBar, Avatar, Typography, Toolbar, Button } from '@material-ui/core'
+import decode from 'jwt-decode';
+
+import { AppBar, Avatar, Typography, Toolbar, Button, Paper } from '@material-ui/core'
 import memories from '../../image/angel.png'
 
 import useStyles from './styles'
@@ -29,6 +31,13 @@ const logout = () => {
 useEffect(() => {
      // const token = user.tokenId
      // console.log(token)
+     if(user){
+          const token = user.token
+          const decodedToken= decode(token)
+
+          if(decodedToken.exp * 1000 < new Date().getTime()) logout()
+     }
+
      setUser(JSON.parse(localStorage.getItem('profile')))
 }, [location])
 
@@ -37,11 +46,11 @@ useEffect(() => {
      return (
           <AppBar className={classes.appBar} position="static" color="inherit">
 
-               <div className={classes.brandContainer}>
+               <Paper className={classes.brandContainer}>
   
                      <Typography component={Link} to="/" className={classes.typography} variant="h3" align="center">Memories</Typography>
                          <img className={classes.image} src={memories} alt="" height="60"/>
-               </div>
+               </Paper>
          <Toolbar className={classes.toolbar}>
                     {user ? (
                          <div className={classes.profile}>
