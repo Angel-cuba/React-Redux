@@ -60,19 +60,22 @@ const user = JSON.parse(localStorage.getItem('profile'))
             })
      }
 
-    // if(!user.profile.name){
-    //     return (
-    //         <Paper className={classes.paper}>
-    //             <Typography variant="h6" align="center">
-    //                 Please create your own memories and like other's memories.
-    //             </Typography>
-    //         </Paper>
-    //     )
-    // }
+    if(!user){
+            return (
+                <Paper className={classes.letter}>
+                <Typography variant="h6" align="center">
+                    Please<span className={classes.span}> SignIn  </span>
+                       
+                   
+                      to create your own memories and like other's memories.
+                </Typography>
+            </Paper>
+            )
+    }
 
      return (
          <Paper className={classes.paper}>
-            
+     
               <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
                     <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
                     {/* <TextField 
