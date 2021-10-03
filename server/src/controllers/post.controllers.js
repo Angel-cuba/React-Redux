@@ -2,6 +2,15 @@ const ctrl = {}
 import PostMessage from '../models/post.model'
 import mongoose from 'mongoose'
 
+import cloudinary from 'cloudinary';
+import { cloudinaryDB } from '../keytoserver/key';
+
+cloudinary.config({
+     cloud_name: cloudinaryDB.CLOUD_NAME,
+     api_key: cloudinaryDB.API_KEY,
+     api_secret: cloudinaryDB.API_SECRET,
+})
+
 ctrl.readPost = async (req, res) => {
      try {
           const postMessage = await PostMessage.find()
@@ -15,7 +24,7 @@ ctrl.readPost = async (req, res) => {
 
 ctrl.createPost = async(req, res) => {
      const post = req.body
-
+         console.log(post)
      const newPost = new PostMessage({...post, creator: req.userId, createdAt: new Date().toISOString()})
 
      try {
