@@ -32,6 +32,8 @@ export default makeStyles(() => ({
   purple: {
     // position: 'absolute',
     // right: 30,
+    backgroundColor: 'red',
+    color: 'silver'
   },
   toolbar: {
     // display: 'flex',

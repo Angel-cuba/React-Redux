@@ -16,9 +16,9 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
-     // console.log(post);
+     console.log(post);
      const classes = useStyles()
-     const { name, title, createdAt, message, tags, likes,  _id } = post;
+     const { name, title, createdAt, message, tags, likes,  _id, selectedFile } = post;
      const dispatch = useDispatch();
 
      const user = JSON.parse(localStorage.getItem('profile'))
@@ -50,7 +50,7 @@ const Post = ({ post, setCurrentId }) => {
      return (
           !post ? <CircularProgress/> : (
                <Card className={classes.card} >
-           <CardMedia className={classes.media} title={title} image={post.selectedFile || 'https://res.cloudinary.com/dqaerysgb/image/upload/v1628766841/qpelx36hxluhbyfgcgdj.jpg'} component='img'/>
+           <CardMedia className={classes.media} title={title} image={selectedFile} />
            <div className={classes.overlay}>
                 <Typography variant="h6">{name}</Typography>
                 <Typography className={classes.color} variant="h6">{title}</Typography>

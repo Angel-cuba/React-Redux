@@ -25,7 +25,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
         title: '',
         message: '',
         tags: '',
-        // selectedFile: '',
+        selectedFile: '',
     })
      const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId): null)
 
@@ -41,8 +41,11 @@ const user = JSON.parse(localStorage.getItem('profile'))
              dispatch(updatePost(currentId, {...postData, name : user.profile.name}))
              
          }else{
-            
+            // console.log(postData);
             dispatch(createPost({...postData, name : user.profile.name})) 
+
+        
+
             history.push('/')
          }
             Clear()
@@ -56,7 +59,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
                 title: '',
                 message: '',
                 tags: '',
-                // selectedFile: ''
+                selectedFile: ''
             })
      }
 
@@ -76,7 +79,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
      return (
          <Paper className={classes.paper}>
      
-              <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
+              <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit} autoComplete="off">
                     <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
                     {/* <TextField 
                     className={classes.textfield}
@@ -110,15 +113,35 @@ const user = JSON.parse(localStorage.getItem('profile'))
                     fullWidth
                     value={postData.tags}
                     onChange={(e) => setPostData({...postData, tags : e.target.value.split(',') })} /> 
-                     {/* <div className={classes.fileInput}>
+                      <div className={classes.fileInput}>
                         <FileBase
                         type= "file"
                         multiple={false}
-                        onDone={(base64) => setPostData({
+                        onDone={({ base64 }) => setPostData({
                             ...postData, 
                             selectedFile: base64
                         })}/>
-                    </div>  */}
+                    </div>  
+                    {/* <TextField
+                    className={classes.textfield}
+                    type="file"
+                    multiple={false}
+                    name="selectedFile"
+                    id="selectedFile"
+                    variant="outlined"
+                    label="Selected File" 
+                    fullWidth
+                    // value={postData.selectedFile}
+                    onChange={(e) => setPostData({...postData, selectedFile:  (e)=>{
+                      const file = e.target.files[0]
+
+                      const formData = new FormData()
+                      const final =  formData.append('selectedFile', file)
+                        return (
+                             final
+                        )
+                    }})}
+                    /> */}
                     <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth={true}>Save</Button>
                     <Button variant="contained" color="secondary" size="small" onClick={Clear} fullWidth>Clear</Button>
               </form>

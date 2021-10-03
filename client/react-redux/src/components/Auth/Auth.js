@@ -88,7 +88,7 @@ const Auth = () => {
                     <Typography variant="h5">
                          {isSignup ? 'Sign Up' : 'Sign In'}
                     </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit}>
+                    <form className={classes.form} onSubmit={handleSubmit} autoComplete= "off">
                          <Grid container spacing={2}>
                                    { isSignup && (
                                         <div>                                      
