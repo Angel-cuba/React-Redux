@@ -16,14 +16,16 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
-     console.log(post);
+     // console.log(post);
      const classes = useStyles()
      const { name, title, createdAt, message, tags, likes,  _id, selectedFile } = post;
      const dispatch = useDispatch();
 
+     const location = useLocation()
+
      const user = JSON.parse(localStorage.getItem('profile'))
      
-     console.log('likes----',post.likes.length)
+     // console.log('likes----',post.likes.length)
      // console.log(user.profile._id);
      // console.log(user.profile.googleId);
 
@@ -50,13 +52,14 @@ const Post = ({ post, setCurrentId }) => {
      return (
           !post ? <CircularProgress/> : (
                <Card className={classes.card} >
-           <CardMedia className={classes.media} title={title} image={selectedFile} />
+           <CardMedia className={classes.media} title={title} image={selectedFile} component="div"/>
            <div className={classes.overlay}>
                 <Typography variant="h6">{name}</Typography>
                 <Typography className={classes.color} variant="h6">{title}</Typography>
 
                 <Typography style={{color: '#ce8713'}} variant="body2">{moment(createdAt).fromNow()}</Typography>
            </div>
+           {/* <image></image> */}
             {
                          user ?
                          (user.profile.googleId === post.creator || user.profile._id === post.creator)

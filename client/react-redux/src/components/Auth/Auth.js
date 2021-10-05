@@ -35,7 +35,7 @@ const Auth = () => {
 
      const handleSubmit = (event) => {
                event.preventDefault()
-          console.log(formData);
+          // console.log(formData);
           if (isSignup){
                dispatch(signup(formData, history))
           } else {

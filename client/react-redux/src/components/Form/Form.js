@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64'
 import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../actions/post.actions'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 import { useSelector } from 'react-redux'
@@ -67,9 +67,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
             return (
                 <Paper className={classes.letter}>
                 <Typography variant="h6" align="center">
-                    Please<span className={classes.span}> SignIn  </span>
-                       
-                   
+                    Please<span className={classes.span}> SignIn  </span>                   
                       to create your own memories and like other's memories.
                 </Typography>
             </Paper>
@@ -77,7 +75,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
     }
 
      return (
-         <Paper className={classes.paper}>
+         <Paper className={classes.paper} elevation={12}>
      
               <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit} autoComplete="off">
                     <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
@@ -122,26 +120,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
                             selectedFile: base64
                         })}/>
                     </div>  
-                    {/* <TextField
-                    className={classes.textfield}
-                    type="file"
-                    multiple={false}
-                    name="selectedFile"
-                    id="selectedFile"
-                    variant="outlined"
-                    label="Selected File" 
-                    fullWidth
-                    // value={postData.selectedFile}
-                    onChange={(e) => setPostData({...postData, selectedFile:  (e)=>{
-                      const file = e.target.files[0]
-
-                      const formData = new FormData()
-                      const final =  formData.append('selectedFile', file)
-                        return (
-                             final
-                        )
-                    }})}
-                    /> */}
+               
                     <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth={true}>Save</Button>
                     <Button variant="contained" color="secondary" size="small" onClick={Clear} fullWidth>Clear</Button>
               </form>
