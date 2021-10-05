@@ -17,6 +17,8 @@ export const fetchPost = () => API.get(`/read`)
 
 export const fetchCreate = (newPost) => API.post(`/create`,  newPost )
 
+export const fetchPostBySearch = (searchQuery) => API.get(`/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`) 
+
 export const updatePost = (  id, newPost ) => API.put(`/update/${id}`, newPost )
 
 export const deletePost = ( id ) => API.delete(`/delete/${id}`)
