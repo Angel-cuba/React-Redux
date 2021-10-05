@@ -20,14 +20,14 @@ app.use(cors());
 app.use(morgan('dev'));
 
 //Image
-const imageName = time();
-const storage = multer.diskStorage({
-	destination: path.join(__dirname, 'public/upload'),
-	filename: (req, file, cb) => {
-		cb(null, imageName + path.extname(file.originalname));
-	},
-});
-app.use(multer({ storage }).single('selectedFile'));
+// const imageName = time();
+// const storage = multer.diskStorage({
+// 	destination: path.join(__dirname, 'public/upload'),
+// 	filename: (req, file, cb) => {
+// 		cb(null, imageName + path.extname(file.originalname));
+// 	},
+// });
+// app.use(multer({ storage }).single('selectedFile'));
 //
 // app.use(express.json({}))
 // app.use(express.urlencoded({ extended: true }))

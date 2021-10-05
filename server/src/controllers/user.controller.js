@@ -18,8 +18,8 @@ ctrl.sigInUser = async (req, res) => {
                     { 
                     email: existUser.email, id: existUser._id
                     }, 
-                    //  process.env.COOKIE_SECURE,
-                    'test',
+                     process.env.COOKIE_SECURE,
+                   //  'test',
                      { 
                           expiresIn: '1h'
                      }
@@ -56,7 +56,8 @@ ctrl.signUpUser = async (req, res) => {
                     email: result.email, id: result._id
                     }, 
                     //  process.env.COOKIE_SECURE,
-                    'test',
+                    // 'test',
+                    process.env.COOKIE_SECURE,
                      { 
                           expiresIn: '1h'
                      }
