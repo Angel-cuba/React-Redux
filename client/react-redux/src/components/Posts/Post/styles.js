@@ -20,6 +20,8 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    backgroundColor: '#2C394B'
+
   },
   overlay: {
     position: 'absolute',
@@ -44,16 +46,18 @@ export default makeStyles({
     textAlign: 'right',
   },
   title: {
-    color: 'gray',
+    color: '#D2D2D2',
+    textAlign: 'center',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
   },
-  title1: {
+  tags: {
     marginTop: 10,
     color: 'crimson',
+    textAlign: 'right'
   },
   buttonDelete: {
     backgroundColor: 'red',

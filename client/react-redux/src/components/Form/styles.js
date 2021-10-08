@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
     padding: 20,
     borderRadius: 15,
     marginLeft: '30%',
-    backgroundColor: 'rgba(255,255,255,0.752)'
+    backgroundColor: '#2C394B'
   },
   span: {
     color: 'orange'

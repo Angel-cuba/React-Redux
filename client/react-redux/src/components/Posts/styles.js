@@ -11,4 +11,9 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  circularProgress: {
+    height: '100vh',
+    backgroundColor: 'rgba(0,0,0,.04)',
+    borderRadius: 10
+  }
 }));

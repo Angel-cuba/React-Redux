@@ -33,26 +33,51 @@ export default makeStyles((theme) => ({
     }
   },
   form: {
-     margin: 'center'
+     margin: 'center',
+     backgroundColor: 'rgba(0,0,0, 0.234)',
+     borderRadius: 10,
   },
   appBarSearch: {
     borderRadius: 4,
     marginBottom: '1rem',
     display: 'flex',
     padding: '16px',
-    // width: '60%'
-    // marginLeft: '30%'
+     backgroundColor: 'yellow',
+    '&:hover': {
+      backgroundColor: '#2C394B'
+    }
+  },
+  textField:  {
+    '& .MuiOutlinedInput-root':{
+      color: '#D2D2D2',
+      backgroundColor: 'rgba(255,255,255,0.029)',
+
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'rgba(0,0,0,.224672)',
+    },
+    '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':{
+      // color: '#D2D2D2',
+    //  backgroundColor: 'red'
+      // highlightColor: 'white'
+    
+    },
+   
   },
   paginations: {
     borderRadius: 4,
     marginTop: '1rem',
-    padding: '16px'
+    padding: '16px',
+    marginBottom : '1rem',
+    // backgroundColor: 'red',
+    marginLeft: '30%', 
+    width: '60%'
   },
   gridContainer: {
     [theme.breakpoints.down('xs')]:
     {
       flexdirection: 'column-reverse',
-    }
+    },
   },
   buttonSearch: {
     color: 'crimson',

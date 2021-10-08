@@ -10,7 +10,7 @@ export default makeStyles(() => ({
     justifyContent: 'space-between',
     alignContent: 'center',
     position: 'relative',
-    backgroundColor: '#5e5c5c',
+    backgroundColor: '#2C394B',
     paddingLeft: 70
   },
    image: {
@@ -20,7 +20,7 @@ export default makeStyles(() => ({
    
   },
     typography: {
-    color: '#1e3b70',
+    color: '#D2D2D2',
     textDecoration: 'none',
   },
   profile:{
