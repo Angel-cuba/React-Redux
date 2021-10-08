@@ -12,11 +12,19 @@ cloudinary.config({
 })
 
 ctrl.readPost = async (req, res) => {
+     const { page } = req.query
+
      try {
-          const postMessage = await PostMessage.find()
+          //limits of post for pages
+          const LIMIT = 8
+          //get the starting index of every page
+          const startIndex = (Number(page) - 1) * LIMIT 
+          const total = await PostMessage.countDocuments({})
+
+          const postMessage = await PostMessage.find().sort({ _id : -1 }).limit(LIMIT).skip(startIndex)
           // console.log(postMessage)
 
-          res.status(200).json(postMessage)
+res.status(200).json({ data: postMessage, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)})
      } catch (error) {
           res.status(404).json({ message: error.message })
      }
@@ -29,7 +37,7 @@ ctrl.getPostBySearch = async (req, res) => {
           const title = new RegExp(searchQuery, 'i')
 
           const posts = await PostMessage.find({ $or: [{ title }, { tags : { $in: tags.split(',') } }] })
-
+          
           res.json({ data : posts })
           
      } catch (error) {
@@ -58,7 +66,7 @@ ctrl.updatePost = async(req, res) => {
 
      if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with this id')
 
-     const updatePost = await PostMessage.findByIdAndUpdate(_id, { ...body, _id }, { new: true})
+     const updatePost = await PostMessage.findByIdAndUpdate(_id, { ...body, _id, createdAt: new Date().toISOString() }, { new: true})
 
      res.json(updatePost)
 

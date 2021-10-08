@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
           // console.log('------------', isCustomAuthorization)
 
           let decodedData
-                    console.log(process.env.COOKIE_SECURE);
+                    // console.log(process.env.COOKIE_SECURE);
 
 
                if(token || isCustomAuthorization){
@@ -19,6 +19,7 @@ const auth = async (req, res, next) => {
                     decodedData = jwt.verify(token, process.env.COOKIE_SECURE)
                     //process.env.COOKIE_SECURE
                     console.log('---------------------',decodedData)
+                    console.log(isCustomAuthorization)
 
                     req.userId = decodedData.id
                }else{
