@@ -27,7 +27,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
         tags: '',
         selectedFile: '',
     })
-     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId): null)
+     const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId): null)
 
     useEffect(() => {
         if(post) setPostData(post)
@@ -42,7 +42,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
              
          }else{
             // console.log(postData);
-            dispatch(createPost({...postData, name : user.profile.name})) 
+            dispatch(createPost({...postData, name : user.profile.name}, history)) 
 
         
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -8,10 +8,8 @@ import Posts from '../../components/Posts/Posts';
 
 import Paginate from '../Pagination/Pagination';
 
-import { getPosts } from '../../actions/post.actions';
-
 import useStyles from './styles';
-import { Paper, Container, Grow, Grid, AppBar, TextField, Button, Chip } from '@mui/material';
+import { Container, Grow, Grid, AppBar, TextField, Button } from '@mui/material';
 import ChipInput from 'material-ui-chip-input';
 import { getPostBySearch } from '../../actions/post.actions';
 
@@ -90,11 +88,21 @@ const Home = () => {
 						</Button>
 					</AppBar>
 
+					
+
 					<Grid className={classes.form} item xs={12} sm={6} lg={6}>
 						<Form currentId={currentId} setCurrentId={setCurrentId} />
-						<div color="primary" className={classes.paginations} elevation={6}>
-							<Paginate page={page} />
-						</div>
+						{
+						( !searchQuery && !tags.length) 
+								&& 
+								(
+								<div color="primary" className={classes.paginations} elevation={6}>
+										<Paginate page={page} />
+									</div>
+								)
+								}
+
+						
 					</Grid>
 				</Grid>
 			</Container>

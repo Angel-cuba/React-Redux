@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
   },
   circularProgress: {
-    height: '100vh',
+    height: '40vh',
     backgroundColor: 'rgba(0,0,0,.04)',
     borderRadius: 10
   }

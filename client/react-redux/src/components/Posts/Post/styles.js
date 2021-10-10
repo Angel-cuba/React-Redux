@@ -44,6 +44,10 @@ export default makeStyles({
     margin: '20px',
     flexDirection: 'column',
     textAlign: 'right',
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,.012)',
+      color: 'white'
+    }
   },
   title: {
     color: '#D2D2D2',

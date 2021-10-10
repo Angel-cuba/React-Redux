@@ -21,9 +21,19 @@ const App = () => {
             default: '#29524a'
           },
           secondary:{
-            main: '#90d5ec'
+            main: 'rgba(0,0,0,.719)',
+             background: '#90d5ec'
+          },
+          action: {
+            active: 'red',
+            focus: 'rgb(255,255,255)',
+            hover: 'yellow'
           }
-        }
+
+ 
+        },
+       
+   
     })
  
 
@@ -38,8 +48,8 @@ const App = () => {
        <Switch>
          <Route path="/"  exact component={() => <Redirect to="/posts" />}/>
          <Route path="/posts" exact component={Home}/>
-         <Route path="/posts/search" exact component={Home}/>
-         <Route path="/posts/:id" component={PostDetails}/>
+         <Route path="/search" exact component={Home}/>
+         <Route path="/read/:id" exact component={PostDetails}/>
 
          {/* component={Home} */}
          <Route path="/auth" component={() => (!user ? <Auth/> : <Redirect to="posts"/>)} exact/>

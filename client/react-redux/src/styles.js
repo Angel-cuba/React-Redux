@@ -8,9 +8,9 @@ export default makeStyles((theme) => ({
   },
 
   container: {
-    //backgroundColor: '#09203f',
-    borderRadius: 15,
-    paddingTop: 1,
+    backgroundColor: '#09203f',
+   paddingTop: 0,
+    margin: 0
   },
   content: {
      marginTop: 30,

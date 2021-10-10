@@ -3,7 +3,9 @@ import axios from 'axios';
 // const url = 'http://localhost:3002/api'
 // const userUrl = 'http://localhost:3002/api/user'
 
-const API = axios.create({ baseURL: 'http://localhost:3002/api' })
+//const API = axios.create({ baseURL: 'http://localhost:3002/api' })
+const API = axios.create({ baseURL: 'https://mynewappofproject.herokuapp.com' })
+
 
 API.interceptors.request.use((req) => {
      if(localStorage.getItem('profile')){
@@ -13,11 +15,13 @@ API.interceptors.request.use((req) => {
 })
 
 
-export const fetchPost = () => API.get(`/read`)
+export const fetchPost = (page) => API.get(`/read?page=${page}`)
 
 export const fetchCreate = (newPost) => API.post(`/create`,  newPost )
 
 export const fetchPostBySearch = (searchQuery) => API.get(`/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`) 
+
+export const fetchPostById = (id) => API.get(`/read/${id}`)
 
 export const updatePost = (  id, newPost ) => API.put(`/update/${id}`, newPost )
 

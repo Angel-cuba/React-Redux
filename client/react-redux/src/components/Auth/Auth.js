@@ -57,7 +57,7 @@ const Auth = () => {
           // const result = res?.profileObj;
                // console.log(res)
               // console.log('TOKENID',res.tokenId);
-              // console.log('PROFILE',res.profileObj);
+               console.log('PROFILE',res.profileObj);
                const profile = res.profileObj;
                const tokenId = res.tokenId;
 
