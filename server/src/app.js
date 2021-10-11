@@ -15,24 +15,26 @@ const app = express();
 //Puerto
 app.set('port', serverPORT.PORT || '');
 //CORS
+// app.use(function(req, res, next) {
+// 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+// 		res.header({ 'Access-Control-Allow-Origin': 'http://localhost:3000'});
+
+// 		next();
+// 	});
+// 	let options = {
+// 		origin: 'http://localhost:3000',
+// 		methods: 'POST, GET, PUT, DELETE, PATCH',
+// 	};options
 app.use(cors());
 //MIDDLEWARES
 app.use(morgan('dev'));
 
-//Image
-// const imageName = time();
-// const storage = multer.diskStorage({
-// 	destination: path.join(__dirname, 'public/upload'),
-// 	filename: (req, file, cb) => {
-// 		cb(null, imageName + path.extname(file.originalname));
-// 	},
-// });
-// app.use(multer({ storage }).single('selectedFile'));
-//
-// app.use(express.json({}))
-// app.use(express.urlencoded({ extended: true }))
+
+app.get('/', (req, res) => {
+     res.send('App running on Heroku');
+})
+
 app.use(express.json({limit: '20mb', extended:true }));
-// app.use(express.text({ limit: '20mb'}));
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 //routes
 // las rutas deben estar siempre después de la definición del CORS

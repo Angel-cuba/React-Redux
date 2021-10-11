@@ -22,7 +22,7 @@ export default ( state = { isLoading: true, posts: [] }, action) => {
                return { ...state, post: action.payload}
 
           case CREATE_POST:
-               return {...state, posts: [ ... state.posts, action.payload ]};
+               return {...state, posts: [ ...state.posts, action.payload ]};
 
           case UPDATE_POST:
                return {...state, posts: state.posts.map((post) => post._id === action.payload._id ? action.payload : post)};
