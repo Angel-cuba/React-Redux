@@ -19,7 +19,6 @@ const location = useLocation()
 
 const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')))
 
-// console.log(user)
 const logout = () => {
      dispatch({ type: 'LOGOUT' })
 
@@ -27,16 +26,13 @@ const logout = () => {
      setUser(null)
 }
 
-// console.log(user.profile.name);////7
+
 useEffect(() => {
-     // const token = user.tokenId
-     // console.log(user)
+    
      if(user){
           const token = user.token
-          const decodedToken= decode(token)
-          //  console.log(token)
-          // console.log(decodedToken)
-          // console.log(new Date().utcnow())
+          const tokenId = user.tokenId
+          const decodedToken= decode(token || tokenId)
 
           if(decodedToken.exp * 1000 < new Date().getTime()) logout()
      }

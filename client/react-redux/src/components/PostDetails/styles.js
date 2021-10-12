@@ -38,6 +38,27 @@ export default makeStyles((theme) => ({
     },
   },
   loadingPaper: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: '20px', 
+    borderRadius: '15px',
+    height: '39vh',
   },
+  commentContainer: {
+    display: 'flex',
+     justifyContent: 'space-between',
+    //  backgroundColor: 'red'
+  },
+  innerContainer: {
+    height: '200px',
+    overflowY: 'auto',
+    width: '29%',
+    marginRight: '20px',
+  },
+  small: {
+    width: '30%'
+
+  }
+
 }));

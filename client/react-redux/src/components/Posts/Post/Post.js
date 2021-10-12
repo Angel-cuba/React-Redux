@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import useStyles from './styles';
 import {
 	Card,
@@ -32,33 +32,48 @@ const Post = ({ post, setCurrentId }) => {
 	const dispatch = useDispatch();
 	const history = useHistory()
 
+	const [ likes, setLikes ] = useState(post.likes)
+
+	const handleLikes = async () => {
+		dispatch(likePost(_id))
+
+	 if (likes.find((like) => like === (user.profile._id || user.profile.googleId)) ){
+		 setLikes(likes.filter((like) => like !== (user.profile._id || user.profile.google)))
+	 }else{
+		 setLikes([ ...likes , user.profile._id || user.profile.googleId])
+	 }
+		
+		
+		
+		}
+
 	const user = JSON.parse(localStorage.getItem('profile'));
 
-	// console.log('likes----',post.likes.length)
+	// console.log('likes----',likes.length)
 	// console.log(user.profile._id);
 	// console.log(user.profile.googleId);
 
 	const Likes = () => {
-		if (post.likes.length - 1 === 0) {
+		if (likes.length - 1 === 0) {
 			 return <MoreHorizIcon />;
 			//return (<h1>No</h1>)
 		}
-		if (post.likes.length > 0) {
-			return post.likes.find((like) => like === (user.profile._id || user.profile.googleId)) ? (
+		if (likes.length > 0) {
+			return likes.find((like) => like === (user.profile._id || user.profile.googleId)) ? (
 				<Fragment>
 					<ThumbUpAltIcon fontSize="small" />
 					&nbsp;
 					{
-						post.likes.length > 2
-							? `You and ${post.likes.length - 1} others`
-							: `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`
+						likes.length > 2
+							? `You and ${likes.length - 1} others`
+							: `${likes.length} like${likes.length > 1 ? 's' : ''}`
 						//
 					}
 				</Fragment>
 			) : (
 				<Fragment>
 					<ThumbUpOffAltIcon fontSize="small" />
-					&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}
+					&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
 				</Fragment>
 			);
 		}
@@ -133,12 +148,13 @@ const Post = ({ post, setCurrentId }) => {
 						size="small"
 						color="primary"
 						disabled={!user}
-						onClick={() => dispatch(likePost(_id))}
+						// onClick={handleLikes}
+						onClick={handleLikes}
 					>
 						{user ? (
 							<Likes />
-						) : post.likes.length ? (
-							`This post has ${post.likes.length} likes`
+						) : likes.length ? (
+							`This post has ${likes.length} likes`
 						) : (
 							<p style={{ color: 'white', textAlign: 'left' }}>
 								This post does not have any likes{' '}

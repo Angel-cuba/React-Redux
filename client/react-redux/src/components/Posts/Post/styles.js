@@ -65,6 +65,8 @@ export default makeStyles({
   },
   buttonDelete: {
     backgroundColor: 'red',
+    color: 'white', 
+    fontWeight: 'bold'
   },
   color:{
     color: '#b34930'

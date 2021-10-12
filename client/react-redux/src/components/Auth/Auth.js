@@ -57,7 +57,7 @@ const Auth = () => {
           // const result = res?.profileObj;
                // console.log(res)
               // console.log('TOKENID',res.tokenId);
-               console.log('PROFILE',res.profileObj);
+               console.log('PROFILE',res);
                const profile = res.profileObj;
                const tokenId = res.tokenId;
 
@@ -80,7 +80,7 @@ const Auth = () => {
      
      return (
           <Container className={classes.container} component="main" maxWidth="xs">
-               <Paper className={classes.paper} elevation={3}>
+               <Paper className={classes.paper} elevation={6}>
                     <Avatar className={classes.avatar}>
                          <LockOpenIcon />
 

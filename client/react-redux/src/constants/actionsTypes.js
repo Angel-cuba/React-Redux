@@ -6,6 +6,8 @@ export const UPDATE_LIKE = 'UPDATE_LIKE'
 export const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH'
 export const DELETE_POST = 'DELETE_POST'
 
+export const COMMENT_POST = 'COMMENT_POST'
+
 export const START_LOADING = 'START_LOADING'
 export const END_LOADING = 'END_LOADING'
 

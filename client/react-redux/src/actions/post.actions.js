@@ -8,6 +8,7 @@ import {
 	UPDATE_POST,
 	UPDATE_LIKE,
 	DELETE_POST,
+	COMMENT_POST
 } from '../constants/actionsTypes';
 import * as api from '../api/api';
 
@@ -54,6 +55,7 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
 	}
 };
 
+
 export const createPost = (post, history) => async (dispatch) => {
 	try {
 		dispatch({ type: START_LOADING})
@@ -91,6 +93,18 @@ export const likePost = (id) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const commentPost = (value, id) => async (dispatch) => {
+	try {
+		const { data } = await api.commentPost(value, id);
+		console.log(data)
+		dispatch({ type: COMMENT_POST, payload: data });
+		 
+		 return data.comments
+	} catch (error) {
+		console.log(error)
+	}
+}
 
 export const deletePost = (id) => async (dispatch) => {
 	try {

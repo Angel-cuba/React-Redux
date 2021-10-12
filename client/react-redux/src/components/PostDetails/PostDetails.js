@@ -6,6 +6,7 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import useStyles from './styles';
 import { getPostById, getPostBySearch } from '../../actions/post.actions';
+import Comment from './Comment';
 
 const PostDetails = () => {
 	const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -60,13 +61,9 @@ const PostDetails = () => {
 					<Typography variant="h6">Created by: {post.name}</Typography>
 					<Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
 					<Divider style={{ margin: '20px 0' }} />
-					<Typography variant="body1">
-						<strong>Realtime Chat - coming soon!</strong>
-					</Typography>
-					<Divider style={{ margin: '20px 0' }} />
-					<Typography variant="body1">
-						<strong>Comments - coming soon!</strong>
-					</Typography>
+					
+				
+					<Comment post={post} />
 					<Divider style={{ margin: '20px 0' }} />
 				</div>
 				<div className={classes.imageSection}>
@@ -83,7 +80,7 @@ const PostDetails = () => {
                {/* Recommended POSTS */}
 			{recommendedPosts.length && (
 				<div className={classes.section}>
-		{console.log(recommendedPosts)}
+		{/* {console.log(recommendedPosts)} */}
 					<Typography variant="h5" gutterBottom>You might also like:</Typography>
 					<Divider/>
 					<Grid container className={classes.recommendedPosts}>

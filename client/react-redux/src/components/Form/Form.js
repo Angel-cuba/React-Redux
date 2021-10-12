@@ -77,7 +77,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
      return (
          <Paper className={classes.paper} elevation={12}>
      
-              <form autoComplete= "off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit} autoComplete="off">
+              <form autoComplete= "off" noValidate className={[classes.form, classes.root]} onSubmit={handleSubmit} autoComplete="off">
                     <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
                     {/* <TextField 
                     className={classes.textfield}
