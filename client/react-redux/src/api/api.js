@@ -4,14 +4,22 @@ import axios from 'axios';
 // const userUrl = 'http://localhost:3002/api/user'
 
 const API = axios.create({ baseURL: 'http://localhost:3002/api' })
-//const API = axios.create({ baseURL: 'https://mynewappofproject.herokuapp.com' })
+//const API = axios.create({ baseURL: 'https://mynewappofproject.herokuapp.com/' })
 
 
 API.interceptors.request.use((req) => {
-     if(localStorage.getItem('profile')){
-          req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+     const local = JSON.parse(localStorage.getItem('profile'))
+     //localStorage.getItem('profile')
+     if(local){
+               if(local.token){
+                     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+               }
+               if(local.tokenId){
+                     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).tokenId}`
+               }
+          // req.headers.Authorization ? `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`: `Bearer ${JSON.parse(localStorage.getItem('profile')).tokenId}`
      }
-     return req
+     return req 
 })
 
 
@@ -29,8 +37,10 @@ export const deletePost = ( id ) => API.delete(`/delete/${id}`)
 
 export const likePost = ( id ) => API.patch(`/like/${id}`)
 
+//Comments
+export const commentPost = (value, id) =>API.post(`/comment/${id}`, { value } )
 
-// User parts
+// User side functions
 
 export const signIn = (formData) => API.post(`/user/signin`, formData)
 export const signUp = (formData) => API.post(`/user/signup`, formData)
