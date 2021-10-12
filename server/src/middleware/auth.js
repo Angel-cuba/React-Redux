@@ -2,13 +2,13 @@ import jwt, { decode } from 'jsonwebtoken';
 
 const auth = async (req, res, next) => {
 
-     // console.log(req)
+     //    console.log(req.headers)
      try {
           const token = req.headers.authorization.split(' ')[1];
           const isCustomAuthorization = token.length < 500
 
           // console.log('------',token);
-          // console.log('------------', isCustomAuthorization)
+          //  console.log('-----------', isCustomAuthorization)
 
           let decodedData
                     // console.log(process.env.COOKIE_SECURE);

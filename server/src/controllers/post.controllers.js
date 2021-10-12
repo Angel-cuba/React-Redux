@@ -109,6 +109,20 @@ ctrl.likePost = async(req, res) => {
     res.json(updatePost) 
 }
 
+ctrl.commentPost = async(req, res) => {
+     const { id } = req.params
+     const { value } = req.body
+
+     const post = await PostMessage.findById(id)
+
+     post.comments.push(value)
+
+     const updatePost = await PostMessage.findByIdAndUpdate(id, post, { new: true})
+
+     res.json(updatePost)
+}
+
+
 ctrl.deletePost = async (req, res) => {
     const { id: _id } = req.params
 
