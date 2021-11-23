@@ -3,8 +3,8 @@ import axios from 'axios';
 // const url = 'http://localhost:3002/api'
 // const userUrl = 'http://localhost:3002/api/user'
 
-const API = axios.create({ baseURL: 'http://localhost:3002/api' });
-//const API = axios.create({ baseURL: 'https://mynewappofproject.herokuapp.com/' })
+//const API = axios.create({ baseURL: 'http://localhost:3002/api' });
+const API = axios.create({ baseURL: 'https://mynewappofproject.herokuapp.com' });
 
 API.interceptors.request.use((req) => {
 	const local = JSON.parse(localStorage.getItem('profile'));
