@@ -1,8 +1,8 @@
 const ctrl = {};
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-import User from '../models/user.model';
+const User = require('../models/user.model');
 
 ctrl.sigInUser = async (req, res) => {
 	const { email, password } = req.body;

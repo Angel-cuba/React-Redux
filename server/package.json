@@ -4,12 +4,13 @@
 	"description": "App conected with MongoDB",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon index.js",
-		"start": "node index.js"
+		"dev": "nodemon src/index",
+		"start": "node src/index"
 	},
 	"author": "Angel Luis <araozangel842@gmail.com>",
 	"license": "ISC",
 	"dependencies": {
+		"bcrypt": "^5.0.1",
 		"bcryptjs": "^2.4.3",
 		"cloudinary": "^1.27.0",
 		"cors": "^2.8.5",
