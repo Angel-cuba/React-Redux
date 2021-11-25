@@ -60,6 +60,8 @@ const Auth = () => {
 		const tokenId = res.tokenId;
 
 		try {
+			// dispatch(signup(formData, history));
+
 			dispatch({ type: 'AUTH', data: { profile, tokenId } });
 
 			history.push('/');
