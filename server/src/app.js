@@ -10,14 +10,21 @@ module.exports = (app) => {
 	//Puerto
 	app.set('port', serverPORT.PORT || '');
 
-	let options = {
-		origin: '*',
-		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		preflightContinue: false,
-		optionsSuccessStatus: 204,
-	};
+	// let options = {
+	// 	origin: '*',
+	// 	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+	// 	preflightContinue: false,
+	// 	optionsSuccessStatus: 204,
+	// };
 	// app.use(cors());options
 	//MIDDLEWARES
+	// app.use(cors());
+	const corsOptions = {
+		origin: 'https://sleepy-ardinghelli-519d00.netlify.app',
+		credentials: true, //access-control-allow-credentials:true
+		optionSuccessStatus: 200,
+	};
+	app.use(cors(corsOptions));
 	app.use(morgan('dev'));
 
 	app.get('/', (req, res) => {
@@ -28,8 +35,8 @@ module.exports = (app) => {
 	app.use(express.urlencoded({ limit: '20mb', extended: true }));
 	//routes
 	// las rutas deben estar siempre después de la definición del CORS
-	app.use('/api', cors(options), router);
-	app.use('/api/user', cors(options), userRouter);
+	app.use('/api', router);
+	app.use('/api/user', userRouter);
 
 	return app;
 };
