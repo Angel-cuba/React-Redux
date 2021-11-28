@@ -18,7 +18,7 @@ export const getPostById = (id) => async (dispatch) => {
 		dispatch({ type: START_LOADING });
 
 		const { data } = await api.fetchPostById(id);
-		//  console.log(data)
+
 		dispatch({ type: FETCH_POST_BY_ID, payload: data });
 		dispatch({ type: END_LOADING });
 	} catch (error) {
@@ -31,7 +31,6 @@ export const getPosts = (page) => async (dispatch) => {
 		dispatch({ type: START_LOADING });
 
 		const { data } = await api.fetchPost(page);
-		console.log(data);
 		dispatch({ type: FETCH_ALL, payload: data });
 		dispatch({ type: END_LOADING });
 	} catch (error) {
@@ -46,7 +45,6 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
 		const {
 			data: { data },
 		} = await api.fetchPostBySearch(searchQuery);
-		// console.log(data)
 		dispatch({ type: FETCH_BY_SEARCH, payload: data });
 		dispatch({ type: END_LOADING });
 	} catch (error) {
@@ -59,7 +57,6 @@ export const createPost = (post, history) => async (dispatch) => {
 		dispatch({ type: START_LOADING });
 
 		const { data } = await api.fetchCreate(post);
-		console.log(data._id);
 
 		history.push(`/read/${data._id}`);
 
@@ -94,7 +91,7 @@ export const likePost = (id) => async (dispatch) => {
 export const commentPost = (value, id) => async (dispatch) => {
 	try {
 		const { data } = await api.commentPost(value, id);
-		console.log(data);
+
 		dispatch({ type: COMMENT_POST, payload: data });
 
 		return data.comments;

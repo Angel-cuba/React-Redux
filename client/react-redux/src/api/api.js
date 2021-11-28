@@ -3,21 +3,13 @@ import axios from 'axios';
 // const url = 'http://localhost:3002/api'
 // const userUrl = 'http://localhost:3002/api/user'
 
-//const API = axios.create({ baseURL: 'http://localhost:3002/api' });
-const API = axios.create({ baseURL: 'https://react-redux-mongo-db.herokuapp.com/api' });
+const API = axios.create({ baseURL: 'http://localhost:3002/api' });
+//const API = axios.create({ baseURL: 'https://react-redux-mongo-db.herokuapp.com/api' });
 
 API.interceptors.request.use((req) => {
 	const local = JSON.parse(localStorage.getItem('profile'));
-	//localStorage.getItem('profile')
 	if (local) {
-		if (local.token) {
-			console.log(local.token.length);
-			req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
-		}
-		if (local.tokenId) {
-			console.log(local.tokenId.length);
-			req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).tokenId}`;
-		}
+		req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
 	}
 	return req;
 });

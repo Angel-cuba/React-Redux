@@ -11,42 +11,40 @@ import Comment from './Comment';
 const PostDetails = () => {
 	const { post, posts, isLoading } = useSelector((state) => state.posts);
 
-	
-// const {title} = post
-
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const classes = useStyles();
 	const { id } = useParams();
 
-     useEffect(() => {
-          dispatch(getPostById(id))
-     },[id])
+	useEffect(() => {
+		dispatch(getPostById(id));
+	}, [dispatch, id]);
 
 	useEffect(() => {
-		dispatch(getPostBySearch({ search: 'none', tags: post ? post.tags.join(',') : 'null' }))
-	}, [post])
+		dispatch(getPostBySearch({ search: 'none', tags: post ? post.tags.join(',') : 'null' }));
+	}, [dispatch, post]);
 
-	if(!post) return null
+	if (!post) return null;
 
-	if(isLoading) {
-		return( <Paper className={classes.loadingPaper} elevation={6}>
-			<CircularProgress size="7em"/>
-		</Paper>)
+	if (isLoading) {
+		return (
+			<Paper className={classes.loadingPaper} elevation={6}>
+				<CircularProgress size="7em" />
+			</Paper>
+		);
 	}
 
-
-	const recommendedPosts = posts.filter(({ _id}) => _id !== post._id)
+	const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
 	const openPost = (_id) => {
-		history.push(`/read/${_id}`)
-	}
+		history.push(`/read/${_id}`);
+	};
 
 	return (
 		// <div className={classes.test}>
 		//  <h1>hoalanjsa  oav</h1>
 		// </div>
-		<Paper style={{ padding: '20px', borderRadius: '15px', marginTop: '20px'}} elevation={6}>
+		<Paper style={{ padding: '20px', borderRadius: '15px', marginTop: '20px' }} elevation={6}>
 			<div className={classes.card}>
 				<div className={classes.section}>
 					<Typography variant="h3" component="h2">
@@ -61,8 +59,7 @@ const PostDetails = () => {
 					<Typography variant="h6">Created by: {post.name}</Typography>
 					<Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
 					<Divider style={{ margin: '20px 0' }} />
-					
-				
+
 					<Comment post={post} />
 					<Divider style={{ margin: '20px 0' }} />
 				</div>
@@ -77,33 +74,42 @@ const PostDetails = () => {
 					/>
 				</div>
 			</div>
-               {/* Recommended POSTS */}
+			{/* Recommended POSTS */}
 			{recommendedPosts.length && (
 				<div className={classes.section}>
-		{/* {console.log(recommendedPosts)} */}
-					<Typography variant="h5" gutterBottom>You might also like:</Typography>
-					<Divider/>
+					{/* {console.log(recommendedPosts)} */}
+					<Typography variant="h5" gutterBottom>
+						You might also like:
+					</Typography>
+					<Divider />
 					<Grid container className={classes.recommendedPosts}>
-						{recommendedPosts.map(({ title, message, name, likes, selectedFile, _id }) => 
-							<Grid key={_id}
-								style={{ margin: '20px',
-										cursor: 'pointer',
-										// maxWidth: '300px'
-											}}
+						{recommendedPosts.map(({ title, message, name, likes, selectedFile, _id }) => (
+							<Grid
+								key={_id}
+								style={{
+									margin: '20px',
+									cursor: 'pointer',
+									// maxWidth: '300px'
+								}}
 								onClick={() => openPost(_id)}
 							>
-								<Typography variant="h6" gutterBottom>{title}</Typography>
-								<Typography variant="subtitle2" gutterBottom>{name}</Typography>
-								<Typography variant="subtitle2" gutterBottom>{message}</Typography>
-								<Typography variant="subtitle1" gutterBottom>Likes: {likes.length}</Typography>
-								<img src={selectedFile} width="200px" />
-
-								
+								<Typography variant="h6" gutterBottom>
+									{title}
+								</Typography>
+								<Typography variant="subtitle2" gutterBottom>
+									{name}
+								</Typography>
+								<Typography variant="subtitle2" gutterBottom>
+									{message}
+								</Typography>
+								<Typography variant="subtitle1" gutterBottom>
+									Likes: {likes.length}
+								</Typography>
+								<img src={selectedFile} width="200px" alt={title} />
 							</Grid>
-						)}
+						))}
 					</Grid>
-				
-					</div>
+				</div>
 			)}
 		</Paper>
 	);

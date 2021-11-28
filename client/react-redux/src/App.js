@@ -31,7 +31,6 @@ const App = () => {
 	});
 
 	const user = JSON.parse(localStorage.getItem('profile'));
-	//  console.log(user);
 
 	return (
 		<ThemeProvider theme={theme}>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import useStyles from './styles';
 import {
 	Card,
@@ -17,7 +17,6 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ReadMoreIcon from '@mui/icons-material/ReadMore';
 
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/post.actions';
@@ -27,56 +26,62 @@ import moment from 'moment';
 const Post = ({ post, setCurrentId }) => {
 	// console.log(post);
 
+	useEffect(() => {
+		const user = JSON.parse(localStorage.getItem('profile'));
+		// setUserId(user.profile._id);
+		setUser(user);
+	}, []);
+
 	const classes = useStyles();
 	const { name, title, createdAt, message, tags, _id, selectedFile } = post;
+	console.log('------' + createdAt);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [likes, setLikes] = useState(post.likes);
+	// const [userId, setUserId] = useState();
+	const [user, setUser] = useState();
+	console.log(likes);
+	// console.log('userId---> ' + user.profile._id);
 
 	const handleLikes = async () => {
 		dispatch(likePost(_id));
 
-		if (likes.find((like) => like === (user.profile._id || user.profile.googleId))) {
-			setLikes(likes.filter((like) => like !== (user.profile._id || user.profile.googleId)));
+		if (likes.find((like) => like === user.profile._id)) {
+			setLikes(likes.filter((like) => like !== user.profile._id));
 		} else {
-			setLikes([...likes, user.profile._id || user.profile.googleId]);
+			setLikes([...likes, user.profile._id]);
 		}
 	};
 
-	const user = JSON.parse(localStorage.getItem('profile'));
-
-	// console.log('likes----',likes.length)
-	// console.log(user.profile._id);
-	// console.log(user.profile.googleId);
-
 	const Likes = () => {
 		if (likes.length > 0) {
-			return likes.find((like) => like === (user.profile._id || user.profile.googleId)) ? (
+			return likes.find((like) => like === user.profile._id) ? (
 				<Fragment>
-					<ThumbUpAltIcon fontSize="small" />
+					<ThumbUpAltIcon fontSize="medium" />
 					&nbsp;
-					{
-						likes.length > 1
-							? `You and ${likes.length - 1} others`
-							: `${likes.length} like${likes.length > 1 ? 's' : ''}`
-						//
-					}
+					{likes.filter((like) => like[0] === user.userId) && likes.length === 1 ? (
+						'Just you'
+					) : (
+						<p style={{ paddingLeft: 20 }}>You and {likes.length} others</p>
+					)}
 				</Fragment>
 			) : (
 				<Fragment>
-					<ThumbUpAltIcon fontSize="small" />
+					<ThumbUpAltIcon fontSize="medium" />
 					&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
 				</Fragment>
 			);
 		}
 
-		return (
-			<Fragment>
-				<ThumbUpOffAltIcon fontSize="small" />
-				&nbsp;Like{' '}
-			</Fragment>
-		);
+		if (likes.length === 0) {
+			return (
+				<Fragment>
+					<ThumbUpOffAltIcon fontSize="small" />
+					&nbsp;0 likes{' '}
+				</Fragment>
+			);
+		}
 	};
 
 	const openPost = () => {
@@ -90,17 +95,20 @@ const Post = ({ post, setCurrentId }) => {
 			<CardMedia className={classes.media} title={title} image={selectedFile} component="div" />
 			<div className={classes.overlay}>
 				<Typography variant="h6">{name}</Typography>
-				<Typography className={classes.color} variant="h6">
+				<Typography className={classes.colorTitle} variant="h6">
 					{title}
 				</Typography>
 
-				<Typography style={{ color: '#ce8713' }} variant="body2">
-					{moment(createdAt).fromNow()}
+				<Typography className={classes.dateData} variant="body2">
+					{moment(createdAt).format('ddd, MMM Do, h:mm a ')}
 				</Typography>
+				{/* <Typography>	<Typography>{moment(createdAt).fromNow()}</Typography>
+					<TimeAgo time={new Date(createdAt.slice(0, 10))} opts={{ minInterval: 60 }} locale="fi" />
+				</Typography> */}
 			</div>
 
 			{user
-				? (user.profile.googleId === post.creator || user.profile._id === post.creator) && (
+				? user.profile._id === post.creator && (
 						<div className={classes.overlay2}>
 							<Button styles={{ color: 'white' }} size="small" onClick={() => setCurrentId(_id)}>
 								<MoreHorizIcon fontSize="default" />
@@ -123,12 +131,18 @@ const Post = ({ post, setCurrentId }) => {
 				</div>
 			</ButtonBase>
 
-			<CardActions className={classes.cardActions}>
+			<CardActions
+				className={
+					likes.length === 0 || likes.length === 1 ? classes.cardActions : classes.ifLikeLength
+				}
+			>
 				<Button size="small" color="primary" disabled={!user} onClick={handleLikes}>
 					{user ? (
 						<Likes />
 					) : likes.length ? (
-						<p style={{ color: 'white' }}>This post has {likes.length} likes</p>
+						<p style={{ color: 'white' }}>
+							This post has {likes.length} {likes.length === 1 ? 'like' : 'likes'}
+						</p>
 					) : (
 						<p style={{ textAlign: 'left', color: '#dedede' }}>
 							This post does not have any likes{' '}
@@ -138,9 +152,10 @@ const Post = ({ post, setCurrentId }) => {
 						</p>
 					)}
 				</Button>
+				{/* <div className={classes.ifLikeLength}></div> */}
 
 				{user
-					? (user.profile.googleId === post.creator || user.profile._id === post.creator) && (
+					? user.profile._id === post.creator && (
 							<Button
 								className={classes.buttonDelete}
 								fontSize="small"

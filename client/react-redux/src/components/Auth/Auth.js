@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Avatar, Paper, Grid, Button, Typography, Icon } from '@material-ui/core';
-import { GoogleLogin } from 'react-google-login';
+import { Container, Avatar, Paper, Grid, Button, Typography } from '@material-ui/core';
+
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -30,11 +30,11 @@ const Auth = () => {
 	};
 	const [formData, setFormData] = useState(initialState);
 
-	// const isSignup= true;event
+
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// console.log(formData);
+	
 		if (isSignup) {
 			dispatch(signup(formData, history));
 		} else {
@@ -51,29 +51,6 @@ const Auth = () => {
 		setSignup((presIsSignup) => !presIsSignup);
 		handleShowPassword(false);
 	};
-	const googleSuccess = async (res) => {
-		// const result = res?.profileObj;
-		// console.log(res)
-		// console.log('TOKENID',res.tokenId);
-		console.log('PROFILE', res);
-		const profile = res.profileObj;
-		const tokenId = res.tokenId;
-
-		try {
-			// dispatch(signup(formData, history));
-
-			dispatch({ type: 'AUTH', data: { profile, tokenId } });
-
-			history.push('/');
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const googleFailure = (error) => {
-		console.log(error);
-		console.log('Google Sign In just failed. Please try later');
-	};
 
 	return (
 		<Container className={classes.container} component="main" maxWidth="xs">
@@ -81,13 +58,15 @@ const Auth = () => {
 				<Avatar className={classes.avatar}>
 					<LockOpenIcon />
 				</Avatar>
-				<Typography variant="h5">{isSignup ? 'Sign Up' : 'Sign In'}</Typography>
+				<Typography variant="h5" className={classes.upinTypography}>
+					{isSignup ? 'Sign Up' : 'Sign In'}
+				</Typography>
 				<form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
 					<Grid container spacing={2}>
 						{isSignup && (
 							<div>
-								<Input name="name" label="First Name" handleChange={handleChange} autoFocus />
-								<Input name="lastname" label="Last Name" handleChange={handleChange} />
+								<Input name="name" label="First Name..." handleChange={handleChange} autoFocus />
+								<Input name="lastname" label="Last Name..." handleChange={handleChange} />
 							</div>
 						)}
 						<Input name="email" label="Email Address" handleChange={handleChange} type="email" />
@@ -118,7 +97,7 @@ const Auth = () => {
 							/>
 						)}
 					</Grid>
-					{/* Google Login */}
+				
 					<Button
 						type="submit"
 						fullWidth
@@ -128,26 +107,7 @@ const Auth = () => {
 					>
 						{isSignup ? 'Sign Up' : 'Sign In'}
 					</Button>
-					<GoogleLogin
-						clientId="485149763312-v91eb5tetq30bgnaeg70hj62jb5uhtk7.apps.googleusercontent.com"
-						render={(renderProps) => (
-							<Button
-								className={classes.googleButton}
-								color="primary"
-								onClick={renderProps.onClick}
-								fullWidth
-								disabled={renderProps.disabled}
-								startIcon={<Icon />}
-							>
-								Google Sign In
-							</Button>
-						)}
-						onSuccess={googleSuccess}
-						onFailure={googleFailure}
-						// cookiepolicy="single_host_origin"
-						cookiePolicy={'single_host_origin'}
-					/>
-
+				
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Button onClick={switchMode}>
