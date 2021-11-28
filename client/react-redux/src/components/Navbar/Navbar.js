@@ -33,10 +33,13 @@ const Navbar = () => {
 
 		setUser(JSON.parse(localStorage.getItem('profile')));
 	}, [location]);
-	//location
 
 	return (
-		<AppBar className={classes.appBar} position="static" color="inherit">
+		<AppBar
+			className={location.pathname === '/auth' ? classes.appBarHidden : classes.appBar}
+			position="static"
+			color="inherit"
+		>
 			<Paper className={classes.brandContainer}>
 				<Typography
 					component={Link}

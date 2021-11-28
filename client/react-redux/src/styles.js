@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
 
 	container: {
 		backgroundColor: '#09203f',
-		paddingTop: 0,
+		paddingTop: 10,
 		margin: 0,
 	},
 	content: {

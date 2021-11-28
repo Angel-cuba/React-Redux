@@ -1,6 +1,6 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #082032; 
-	color: white;
+	background-color: #082032;
+	box-sizing: border-box;
 }

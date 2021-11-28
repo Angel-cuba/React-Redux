@@ -33,26 +33,26 @@ const App = () => {
 	const user = JSON.parse(localStorage.getItem('profile'));
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Router>
-				<Container maxWidth="xl" className={classes.container}>
-					<Navbar />
-					<Switch>
-						<Route path="/" exact component={() => <Redirect to="/posts" />} />
-						<Route path="/posts" component={Home} />
-						<Route path="/search" component={Home} />
-						<Route path="/read/:id" component={PostDetails} />
+		// <ThemeProvider theme={theme}>
+		<Router>
+			<Container maxWidth="xl" className={classes.container}>
+				<Navbar />
+				<Switch>
+					<Route path="/" exact component={() => <Redirect to="/posts" />} />
+					<Route path="/posts" component={Home} />
+					<Route path="/search" component={Home} />
+					<Route path="/read/:id" component={PostDetails} />
 
-						{/* component={Home} */}
-						<Route
-							path="/auth"
-							component={() => (!user ? <Auth /> : <Redirect to="posts" />)}
-							exact
-						/>
-					</Switch>
-				</Container>
-			</Router>
-		</ThemeProvider>
+					{/* component={Home} */}
+					<Route
+						path="/auth"
+						component={() => (!user ? <Auth /> : <Redirect to="posts" />)}
+						exact
+					/>
+				</Switch>
+			</Container>
+		</Router>
+		// </ThemeProvider>
 	);
 };
 
