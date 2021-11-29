@@ -57,22 +57,14 @@ export default makeStyles({
 		display: 'flex',
 		justifyContent: 'space-between',
 	},
-	ifLikeLength: {
-		paddingBottom: '16px',
-		width: '100%',
-		display: 'flex',
-		justifyContent: 'space-between',
-		flexDirection: 'column',
-	},
 	tags: {
 		marginTop: 10,
 		color: 'crimson',
 		textAlign: 'right',
 	},
 	buttonDelete: {
-		backgroundColor: 'red',
+		backgroundColor: '#ff0000',
 		color: 'white',
-		fontWeight: 'bold',
 	},
 	colorTitle: {
 		color: '#b34930',

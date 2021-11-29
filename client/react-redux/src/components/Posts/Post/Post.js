@@ -24,25 +24,19 @@ import { deletePost, likePost } from '../../../actions/post.actions';
 import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
-	// console.log(post);
-
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('profile'));
-		// setUserId(user.profile._id);
+
 		setUser(user);
 	}, []);
 
 	const classes = useStyles();
 	const { name, title, createdAt, message, tags, _id, selectedFile } = post;
-	console.log('------' + createdAt);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [likes, setLikes] = useState(post.likes);
-	// const [userId, setUserId] = useState();
 	const [user, setUser] = useState();
-	console.log(likes);
-	// console.log('userId---> ' + user.profile._id);
 
 	const handleLikes = async () => {
 		dispatch(likePost(_id));
@@ -60,11 +54,9 @@ const Post = ({ post, setCurrentId }) => {
 				<Fragment>
 					<ThumbUpAltIcon fontSize="medium" />
 					&nbsp;
-					{likes.filter((like) => like[0] === user.userId) && likes.length === 1 ? (
-						'Just you'
-					) : (
-						<p style={{ paddingLeft: 20 }}>You and {likes.length} others</p>
-					)}
+					{likes.filter((like) => like[0] === user.userId) && likes.length === 1
+						? 'You liked'
+						: `You and ${likes.length} others`}
 				</Fragment>
 			) : (
 				<Fragment>
@@ -102,9 +94,6 @@ const Post = ({ post, setCurrentId }) => {
 				<Typography className={classes.dateData} variant="body2">
 					{moment(createdAt).format('ddd, MMM Do, h:mm a ')}
 				</Typography>
-				{/* <Typography>	<Typography>{moment(createdAt).fromNow()}</Typography>
-					<TimeAgo time={new Date(createdAt.slice(0, 10))} opts={{ minInterval: 60 }} locale="fi" />
-				</Typography> */}
 			</div>
 
 			{user
@@ -131,20 +120,16 @@ const Post = ({ post, setCurrentId }) => {
 				</div>
 			</ButtonBase>
 
-			<CardActions
-				className={
-					likes.length === 0 || likes.length === 1 ? classes.cardActions : classes.ifLikeLength
-				}
-			>
+			<CardActions className={classes.cardActions}>
 				<Button size="small" color="primary" disabled={!user} onClick={handleLikes}>
 					{user ? (
 						<Likes />
 					) : likes.length ? (
-						<p style={{ color: 'white' }}>
-							This post has {likes.length} {likes.length === 1 ? 'like' : 'likes'}
+						<p style={{ color: '#009ffd' }}>
+							{likes.length} {likes.length === 1 ? 'like' : 'likes'}
 						</p>
 					) : (
-						<p style={{ textAlign: 'left', color: '#dedede' }}>
+						<p style={{ textAlign: 'left', color: '#b1bfd8' }}>
 							This post does not have any likes{' '}
 							<span role="img" arial-label="likes">
 								😢
@@ -152,7 +137,6 @@ const Post = ({ post, setCurrentId }) => {
 						</p>
 					)}
 				</Button>
-				{/* <div className={classes.ifLikeLength}></div> */}
 
 				{user
 					? user.profile._id === post.creator && (
@@ -162,7 +146,6 @@ const Post = ({ post, setCurrentId }) => {
 								onClick={() => dispatch(deletePost(_id))}
 							>
 								<DeleteIcon />
-								Delete
 							</Button>
 					  )
 					: null}

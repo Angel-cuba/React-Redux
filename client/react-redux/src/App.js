@@ -8,32 +8,13 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import PostDetails from './components/PostDetails/PostDetails';
-import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material';
 
 const App = () => {
 	const classes = useStyles();
-	const theme = createTheme({
-		palette: {
-			background: {
-				default: '#29524a',
-			},
-			secondary: {
-				main: 'rgba(0,0,0,.719)',
-				background: '#90d5ec',
-			},
-			action: {
-				active: 'red',
-				focus: 'rgb(255,255,255)',
-				hover: 'yellow',
-			},
-		},
-	});
 
 	const user = JSON.parse(localStorage.getItem('profile'));
 
 	return (
-		// <ThemeProvider theme={theme}>
 		<Router>
 			<Container maxWidth="xl" className={classes.container}>
 				<Navbar />
@@ -43,7 +24,6 @@ const App = () => {
 					<Route path="/search" component={Home} />
 					<Route path="/read/:id" component={PostDetails} />
 
-					{/* component={Home} */}
 					<Route
 						path="/auth"
 						component={() => (!user ? <Auth /> : <Redirect to="posts" />)}
@@ -52,7 +32,6 @@ const App = () => {
 				</Switch>
 			</Container>
 		</Router>
-		// </ThemeProvider>
 	);
 };
 

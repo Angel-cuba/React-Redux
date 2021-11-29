@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Avatar, Paper, Grid, Button, Typography } from '@material-ui/core';
-
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Input from './Input';
-
 import { signin, signup } from '../../actions/auth';
-
 import useStyles from './styles';
 import { Box } from '@mui/system';
-// import InUpButton from '../../InUpButton';
-
 import { Link, useLocation } from 'react-router-dom';
-
 import decode from 'jwt-decode';
-
 import { AppBar, Toolbar } from '@material-ui/core';
 
 const Auth = () => {
@@ -209,7 +201,7 @@ export const NavbarInUp = ({ isSignup }) => {
 		setUser(JSON.parse(localStorage.getItem('profile')));
 	}, [location]);
 
-	console.log(location);
+	// console.log(location);
 
 	return (
 		<AppBar className={classes.appBar} position="static" color="inherit">
