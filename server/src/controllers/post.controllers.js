@@ -21,15 +21,12 @@ ctrl.readPost = async (req, res) => {
 		const total = await PostMessage.countDocuments({});
 
 		const postMessage = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-		// console.log(postMessage)
 
-		res
-			.status(200)
-			.json({
-				data: postMessage,
-				currentPage: Number(page),
-				numberOfPages: Math.ceil(total / LIMIT),
-			});
+		res.status(200).json({
+			data: postMessage,
+			currentPage: Number(page),
+			numberOfPages: Math.ceil(total / LIMIT),
+		});
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -57,6 +54,17 @@ ctrl.readPostById = async (req, res) => {
 		res.status(200).json(post);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
+	}
+};
+
+ctrl.readAllByUserId = async (req, res) => {
+	const { id: _id } = req.params;
+	try {
+		const allPosts = await PostMessage.find({ creator: _id });
+		res.send(allPosts);
+		// console.log(allPosts);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
 	}
 };
 

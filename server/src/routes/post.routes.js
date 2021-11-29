@@ -4,6 +4,7 @@ const router = require('express').Router();
 const {
 	readPost,
 	readPostById,
+	readAllByUserId,
 	updatePost,
 	createPost,
 	deletePost,
@@ -16,6 +17,7 @@ const auth = require('../middleware/auth');
 router.get('/search', getPostBySearch);
 router.get('/read', readPost);
 router.get('/read/:id', readPostById);
+router.get('/readAll/:id', readAllByUserId);
 router.post('/create', auth, createPost);
 router.post('/comment/:id', auth, commentPost);
 router.put('/update/:id', auth, updatePost);
