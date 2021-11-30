@@ -43,10 +43,10 @@ const UserPosts = () => {
 		</Grid>
 	) : (
 		<>
+			<Typography variant="h6" className={classes.firstText}>
+				This is your personal space
+			</Typography>
 			<Grid className={posts.length > 4 ? classes.outContainer : classes.lessThan}>
-				<Typography variant="h6" className={classes.firstText}>
-					This is your personal space
-				</Typography>
 				<Grid className={classes.mainContainer} container spacing={3} alignItems="stretch">
 					{posts.map((post) => (
 						<Grid key={post._id} item xs={12} sm={6} md={4} lg={3}>

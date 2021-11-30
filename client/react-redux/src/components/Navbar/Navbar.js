@@ -33,6 +33,7 @@ const Navbar = () => {
 
 		setUser(JSON.parse(localStorage.getItem('profile')));
 	}, [location]);
+	console.log(location.pathname.slice(6));
 
 	return (
 		<AppBar
@@ -48,7 +49,7 @@ const Navbar = () => {
 					variant="h3"
 					align="center"
 				>
-					Memories
+					{location.pathname === '/userposts' ? 'Back' : 'Memories '}
 				</Typography>
 			</Paper>
 			<Toolbar className={classes.toolbar}>

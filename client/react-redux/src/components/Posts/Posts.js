@@ -21,9 +21,12 @@ const Posts = ({ setCurrentId }) => {
 	) : (
 		<>
 			{user && (
-				<Button variant="contained" color="secondary" component={Link} to="/userposts">
-					All your posts in only one place
-				</Button>
+				<div className={classes.divButton}>
+					{' '}
+					<Button className={classes.button} variant="contained" component={Link} to="/userposts">
+						All your posts in only one place
+					</Button>
+				</div>
 			)}
 			<Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
 				{/* alignItems="stretch"  */}

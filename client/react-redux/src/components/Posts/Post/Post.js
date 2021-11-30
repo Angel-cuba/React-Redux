@@ -14,12 +14,11 @@ import {
 import { useHistory } from 'react-router-dom';
 
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import DeleteIcon from '@mui/icons-material/Delete';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from '../../../actions/post.actions';
+import { likePost } from '../../../actions/post.actions';
 
 import moment from 'moment';
 
@@ -37,11 +36,6 @@ const Post = ({ post, setCurrentId }) => {
 
 	const [likes, setLikes] = useState(post.likes);
 	const [user, setUser] = useState();
-
-	const deleteThisPost = async () => {
-		dispatch(deletePost(_id));
-		window.location.reload(true);
-	};
 
 	const handleLikes = async () => {
 		dispatch(likePost(_id));
@@ -104,8 +98,8 @@ const Post = ({ post, setCurrentId }) => {
 			{user
 				? user.profile._id === post.creator && (
 						<div className={classes.overlay2}>
-							<Button styles={{ color: 'white' }} size="small" onClick={() => setCurrentId(_id)}>
-								<MoreHorizIcon fontSize="default" />
+							<Button styles={{ color: 'silver' }} size="small" onClick={() => setCurrentId(_id)}>
+								<MoreVertIcon fontSize="default" color="error" />
 							</Button>
 						</div>
 				  )
@@ -142,14 +136,6 @@ const Post = ({ post, setCurrentId }) => {
 						</p>
 					)}
 				</Button>
-
-				{user
-					? user.profile._id === post.creator && (
-							<Button className={classes.buttonDelete} fontSize="small" onClick={deleteThisPost}>
-								<DeleteIcon />
-							</Button>
-					  )
-					: null}
 			</CardActions>
 		</Card>
 	);

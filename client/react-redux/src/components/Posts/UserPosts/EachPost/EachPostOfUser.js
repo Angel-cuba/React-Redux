@@ -17,7 +17,6 @@ import { deletePost, likePost } from '../../../../actions/post.actions';
 import { useHistory } from 'react-router-dom';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
 const EachPostOfUser = ({ post, userId, isLoading }) => {
@@ -90,11 +89,6 @@ const EachPostOfUser = ({ post, userId, isLoading }) => {
 				<Typography className={classes.dateData} variant="body2">
 					{moment(createdAt).format('ddd, MMM Do, h:mm a ')}
 				</Typography>
-			</div>
-			<div className={classes.overlay2}>
-				<Button styles={{ color: 'white' }} size="small" onClick={() => console.log('Post opened')}>
-					<EditIcon fontSize="medium" />
-				</Button>
 			</div>
 
 			<ButtonBase className={classes.buttonBase} onClick={openPost}>
