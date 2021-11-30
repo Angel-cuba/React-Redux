@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import PostDetails from './components/PostDetails/PostDetails';
+import UserPosts from './components/Posts/UserPosts/UserPosts';
 
 const App = () => {
 	const classes = useStyles();
@@ -23,6 +24,7 @@ const App = () => {
 					<Route path="/posts" component={Home} />
 					<Route path="/search" component={Home} />
 					<Route path="/read/:id" component={PostDetails} />
+					<Route path="/userposts" component={UserPosts} />
 
 					<Route
 						path="/auth"

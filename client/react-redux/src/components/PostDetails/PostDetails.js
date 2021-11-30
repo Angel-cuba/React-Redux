@@ -41,9 +41,6 @@ const PostDetails = () => {
 	};
 
 	return (
-		// <div className={classes.test}>
-		//  <h1>hoalanjsa  oav</h1>
-		// </div>
 		<Paper style={{ padding: '20px', borderRadius: '15px', marginTop: '20px' }} elevation={6}>
 			<div className={classes.card}>
 				<div className={classes.section}>

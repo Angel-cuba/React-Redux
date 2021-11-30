@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import useStyles from './styles';
+import React, { Fragment, useState } from 'react';
 import {
 	Card,
 	CardActions,
@@ -7,36 +6,27 @@ import {
 	Button,
 	Typography,
 	CardMedia,
-	CircularProgress,
 	ButtonBase,
+	CircularProgress,
 } from '@material-ui/core';
+import useStyles from './styles';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { deletePost, likePost } from '../../../../actions/post.actions';
 
 import { useHistory } from 'react-router-dom';
-
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import EditIcon from '@mui/icons-material/Edit';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from '../../../actions/post.actions';
-
-import moment from 'moment';
-
-const Post = ({ post, setCurrentId }) => {
-	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('profile'));
-
-		setUser(user);
-	}, []);
-
-	const classes = useStyles();
-	const { name, title, createdAt, message, tags, _id, selectedFile } = post;
-	const dispatch = useDispatch();
+const EachPostOfUser = ({ post, userId, isLoading }) => {
 	const history = useHistory();
+	const dispatch = useDispatch();
+	const { name, title, createdAt, message, tags, _id, selectedFile } = post;
+	const classes = useStyles();
 
 	const [likes, setLikes] = useState(post.likes);
-	const [user, setUser] = useState();
 
 	const deleteThisPost = async () => {
 		dispatch(deletePost(_id));
@@ -46,20 +36,20 @@ const Post = ({ post, setCurrentId }) => {
 	const handleLikes = async () => {
 		dispatch(likePost(_id));
 
-		if (likes.find((like) => like === user.profile._id)) {
-			setLikes(likes.filter((like) => like !== user.profile._id));
+		if (likes.find((like) => like === userId)) {
+			setLikes(likes.filter((like) => like !== userId));
 		} else {
-			setLikes([...likes, user.profile._id]);
+			setLikes([...likes, userId]);
 		}
 	};
 
 	const Likes = () => {
 		if (likes.length > 0) {
-			return likes.find((like) => like === user.profile._id) ? (
+			return likes.find((like) => like === userId) ? (
 				<Fragment>
 					<ThumbUpAltIcon fontSize="medium" />
 					&nbsp;
-					{likes.filter((like) => like[0] === user.userId) && likes.length === 1
+					{likes.filter((like) => like[0] === userId) && likes.length === 1
 						? 'You liked'
 						: `You and ${likes.length} others`}
 				</Fragment>
@@ -88,6 +78,7 @@ const Post = ({ post, setCurrentId }) => {
 	return !post ? (
 		<CircularProgress />
 	) : (
+		//<Typography>Waiting to charge your info here...</Typography>
 		<Card className={classes.card} raised elevation={6}>
 			<CardMedia className={classes.media} title={title} image={selectedFile} component="div" />
 			<div className={classes.overlay}>
@@ -100,16 +91,11 @@ const Post = ({ post, setCurrentId }) => {
 					{moment(createdAt).format('ddd, MMM Do, h:mm a ')}
 				</Typography>
 			</div>
-
-			{user
-				? user.profile._id === post.creator && (
-						<div className={classes.overlay2}>
-							<Button styles={{ color: 'white' }} size="small" onClick={() => setCurrentId(_id)}>
-								<MoreHorizIcon fontSize="default" />
-							</Button>
-						</div>
-				  )
-				: null}
+			<div className={classes.overlay2}>
+				<Button styles={{ color: 'white' }} size="small" onClick={() => console.log('Post opened')}>
+					<EditIcon fontSize="medium" />
+				</Button>
+			</div>
 
 			<ButtonBase className={classes.buttonBase} onClick={openPost}>
 				<div className={classes.details}>
@@ -126,8 +112,8 @@ const Post = ({ post, setCurrentId }) => {
 			</ButtonBase>
 
 			<CardActions className={classes.cardActions}>
-				<Button size="small" color="primary" disabled={!user} onClick={handleLikes}>
-					{user ? (
+				<Button size="small" color="primary" disabled={!userId} onClick={handleLikes}>
+					{userId ? (
 						<Likes />
 					) : likes.length ? (
 						<p style={{ color: '#009ffd' }}>
@@ -143,8 +129,8 @@ const Post = ({ post, setCurrentId }) => {
 					)}
 				</Button>
 
-				{user
-					? user.profile._id === post.creator && (
+				{userId
+					? userId === post.creator && (
 							<Button className={classes.buttonDelete} fontSize="small" onClick={deleteThisPost}>
 								<DeleteIcon />
 							</Button>
@@ -155,4 +141,4 @@ const Post = ({ post, setCurrentId }) => {
 	);
 };
 
-export default Post;
+export default EachPostOfUser;

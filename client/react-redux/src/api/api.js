@@ -23,6 +23,8 @@ export const fetchPostBySearch = (searchQuery) =>
 
 export const fetchPostById = (id) => API.get(`/read/${id}`);
 
+export const fetchPostByUserId = (id) => API.get(`/readAll/${id}`);
+
 export const updatePost = (id, newPost) => API.put(`/update/${id}`, newPost);
 
 export const deletePost = (id) => API.delete(`/delete/${id}`);

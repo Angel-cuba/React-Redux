@@ -57,7 +57,7 @@ const Navbar = () => {
 						<Typography className={classes.userName} variant="h6">
 							Hello, {user.profile.name}
 						</Typography>
-						{/* <Avatar className={classes.purple} alt={user.profile.givenName} src={user.profile.imageUrl}></Avatar>   */}
+
 						<Avatar
 							className={classes.purple}
 							alt={user.profile.name}
