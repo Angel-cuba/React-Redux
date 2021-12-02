@@ -48,6 +48,9 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'row',
 	},
+	signinFirst: {
+		textTransform: 'uppercase',
+	},
 	signinFirstLetter: {
 		textTransform: 'uppercase',
 		color: '#f53844',

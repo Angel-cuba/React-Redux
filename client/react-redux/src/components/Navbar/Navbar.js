@@ -33,7 +33,6 @@ const Navbar = () => {
 
 		setUser(JSON.parse(localStorage.getItem('profile')));
 	}, [location]);
-	console.log(location.pathname.slice(6));
 
 	return (
 		<AppBar

@@ -28,48 +28,46 @@ const Comment = ({ post }) => {
 	};
 
 	return (
-		<div>
-			<div className={classes.commentContainer}>
-				<div className={classes.innerContainer}>
-					<Typography gutterBottom variant="h6" className={classes.commentsTypography}>
-						Comments
+		<div className={classes.commentContainer}>
+			<div className={classes.innerContainer}>
+				<Typography gutterBottom variant="h6" className={classes.commentsTypography}>
+					Comments
+				</Typography>
+				{comments.map((c, i) => (
+					<Typography key={i} gutterBottom variant="subtitle1">
+						<strong>{c.split(': ')[0]}</strong>
+						{c.split(':')[1]}
 					</Typography>
-					{comments.map((c, i) => (
-						<Typography key={i} gutterBottom variant="subtitle1">
-							<strong>{c.split(': ')[0]}</strong>
-							{c.split(':')[1]}
-						</Typography>
-					))}
-					<div ref={commentRef} />
-				</div>
-
-				{user && (
-					<div style={{ width: '70%' }}>
-						<Typography gutterBottom variant="h6" className={classes.commentsTypography}>
-							Write a comment
-						</Typography>
-						<TextField
-							fullWidth
-							maxRows={4}
-							variant="outlined"
-							label="Write a comment"
-							multiline
-							value={comment}
-							onChange={(e) => setComment(e.target.value)}
-						/>
-						<Button
-							style={{ marginTop: '10px' }}
-							fullWidth
-							variant="contained"
-							disabled={!comment}
-							onClick={handleComment}
-							color="primary"
-						>
-							Send Comment
-						</Button>
-					</div>
-				)}
+				))}
+				<div ref={commentRef} />
 			</div>
+
+			{user && (
+				<div className={classes.writeComment}>
+					<Typography gutterBottom variant="h6" className={classes.commentsTypography}>
+						Write a comment
+					</Typography>
+					<TextField
+						fullWidth
+						maxRows={4}
+						variant="outlined"
+						label="Write a comment"
+						multiline
+						value={comment}
+						onChange={(e) => setComment(e.target.value)}
+					/>
+					<Button
+						style={{ marginTop: '10px' }}
+						fullWidth
+						variant="contained"
+						disabled={!comment}
+						onClick={handleComment}
+						color="primary"
+					>
+						Send Comment
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };

@@ -127,7 +127,7 @@ const Auth = () => {
 											}}
 										>
 											<div className={classes.signinTypography}>
-												<Typography className={classes.signinFirstLetter}>A</Typography>
+												<Typography className={classes.signinFirst}>A</Typography>
 												<Typography>lready have an account?</Typography>
 											</div>
 											<div className={classes.signinTypography}>
@@ -150,7 +150,7 @@ const Auth = () => {
 											}}
 										>
 											<div className={classes.signinTypography}>
-												<Typography className={classes.signinFirstLetter}>D</Typography>
+												<Typography className={classes.signinFirst}>D</Typography>
 												<Typography>on't have an account?</Typography>
 											</div>
 											<div className={classes.signinTypography}>
