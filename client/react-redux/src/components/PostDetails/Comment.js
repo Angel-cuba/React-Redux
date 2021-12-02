@@ -33,12 +33,18 @@ const Comment = ({ post }) => {
 				<Typography gutterBottom variant="h6" className={classes.commentsTypography}>
 					Comments
 				</Typography>
-				{comments.map((c, i) => (
-					<Typography key={i} gutterBottom variant="subtitle1">
-						<strong>{c.split(': ')[0]}</strong>
-						{c.split(':')[1]}
-					</Typography>
-				))}
+				{comments.length !== 0 ? (
+					comments.map((c, i) => (
+						<Typography key={i} gutterBottom variant="subtitle1">
+							<strong>{c.split(': ')[0]}</strong>
+							{c.split(':')[1]}
+						</Typography>
+					))
+				) : (
+					<div>
+						<p>No comments</p>
+					</div>
+				)}
 				<div ref={commentRef} />
 			</div>
 

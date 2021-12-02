@@ -25,17 +25,12 @@ export default makeStyles(() => ({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
-	purple: {
-		// position: 'absolute',
-		// right: 30,
-		backgroundColor: 'red',
-		color: 'silver',
+	avatar: {
+		backgroundColor: '#a40606',
+		color: '#dcdcdc',
 	},
 	toolbar: {
-		// display: 'flex',
-		// flexDirection: 'row',
 		width: 330,
-		// justifyContent: 'space-around',
 	},
 	brandContainer: {
 		backgroundColor: 'rgba(255,255,255,.01)',
@@ -44,5 +39,8 @@ export default makeStyles(() => ({
 		borderRadius: 5,
 		paddingLeft: 5,
 		paddingRight: 10,
+	},
+	logout: {
+		color: '#fff',
 	},
 }));

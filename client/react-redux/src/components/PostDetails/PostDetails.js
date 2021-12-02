@@ -103,7 +103,7 @@ const PostDetails = () => {
 									className={classes.recommendedPostsMessage}
 									onClick={() => openPost(_id)}
 								>
-									<Typography variant="h6" gutterBottom className={classes.left}>
+									<Typography variant="h6" gutterBottom className={classes.center}>
 										{title}
 									</Typography>
 									<Typography variant="h6" gutterBottom className={classes.tagsTypography}>

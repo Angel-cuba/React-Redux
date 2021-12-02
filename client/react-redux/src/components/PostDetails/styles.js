@@ -10,21 +10,6 @@ export default makeStyles((theme) => ({
 		objectFit: 'cover',
 		width: '400px',
 		maxHeight: '600px',
-		// [theme.breakpoints.down(903)]: {
-		// 	width: '390px',
-		// },
-		// [theme.breakpoints.down(883)]: {
-		// 	width: '370px',
-		// },
-		// [theme.breakpoints.down(863)]: {
-		// 	width: '350px',
-		// },
-		// [theme.breakpoints.down(843)]: {
-		// 	width: '330px',
-		// },
-		// [theme.breakpoints.down(823)]: {
-		// 	width: '310px',
-		// },
 	},
 	card: {
 		display: 'flex',
@@ -62,13 +47,11 @@ export default makeStyles((theme) => ({
 		},
 	},
 	recommendedSections: {
-		backgroundColor: 'silver',
 		borderRadius: 5,
 		padding: 10,
 	},
 	recommendedPosts: {
 		display: 'flex',
-		border: '2px solid black',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 
@@ -157,6 +140,9 @@ export default makeStyles((theme) => ({
 
 	left: {
 		textAlign: 'left',
+	},
+	center: {
+		alignItems: 'center',
 	},
 	right: {
 		right: '5px',

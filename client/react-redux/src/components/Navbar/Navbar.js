@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 import decode from 'jwt-decode';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { AppBar, Avatar, Typography, Toolbar, Button, Paper } from '@material-ui/core';
 
@@ -48,7 +50,14 @@ const Navbar = () => {
 					variant="h3"
 					align="center"
 				>
-					{location.pathname === '/userposts' ? 'Back' : 'Memories '}
+					{location.pathname === '/userposts' ? (
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<KeyboardBackspaceIcon />
+							<Typography variant="h5">All Posts</Typography>
+						</div>
+					) : (
+						'Memories '
+					)}
 				</Typography>
 			</Paper>
 			<Toolbar className={classes.toolbar}>
@@ -59,7 +68,7 @@ const Navbar = () => {
 						</Typography>
 
 						<Avatar
-							className={classes.purple}
+							className={classes.avatar}
 							alt={user.profile.name}
 							src={user.profile.name[0].toUpperCase()}
 						></Avatar>
@@ -68,9 +77,8 @@ const Navbar = () => {
 							variant="contained"
 							color="secondary"
 							onClick={logout}
-						>
-							Logout
-						</Button>
+							endIcon={<LogoutIcon />}
+						></Button>
 					</div>
 				) : (
 					<Button component={Link} to="/auth" variant="contained" color="primary">

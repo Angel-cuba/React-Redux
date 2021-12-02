@@ -217,29 +217,8 @@ export const NavbarInUp = ({ isSignup }) => {
 				</Typography>
 			</Paper>
 			<Toolbar className={classes.toolbar}>
-				{user ? (
-					<div className={classes.profile}>
-						<Typography className={classes.userName} variant="h6">
-							Hello, {user.profile.name}
-						</Typography>
-						{/* <Avatar className={classes.purple} alt={user.profile.givenName} src={user.profile.imageUrl}></Avatar>   */}
-						<Avatar
-							className={classes.purple}
-							alt={user.profile.name}
-							src={user.profile.name[0].toUpperCase()}
-						></Avatar>
-						<Button
-							className={classes.logout}
-							variant="contained"
-							color="secondary"
-							onClick={logout}
-						>
-							Logout
-						</Button>
-					</div>
-				) : (
+				{!user && (
 					<Button component={Link} to="/auth" variant="contained" color="primary">
-						{/* <InUpButton isSignup={isSignup} /> */}
 						{!isSignup ? 'Sign In' : 'Sign up'}
 					</Button>
 				)}
