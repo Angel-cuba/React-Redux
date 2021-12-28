@@ -201,8 +201,6 @@ export const NavbarInUp = ({ isSignup }) => {
 		setUser(JSON.parse(localStorage.getItem('profile')));
 	}, [location]);
 
-	// console.log(location);
-
 	return (
 		<AppBar className={classes.appBar} position="static" color="inherit">
 			<Paper className={classes.brandContainer}>

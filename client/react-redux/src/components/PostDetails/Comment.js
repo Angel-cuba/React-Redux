@@ -6,7 +6,6 @@ import { commentPost } from '../../actions/post.actions';
 import useStyles from './styles';
 
 const Comment = ({ post }) => {
-	// console.log(post);
 	const classes = useStyles();
 	const [comments, setComments] = useState(post.comments);
 	const [comment, setComment] = useState('');
@@ -15,7 +14,6 @@ const Comment = ({ post }) => {
 	const commentRef = useRef();
 
 	const user = JSON.parse(localStorage.getItem('profile'));
-	// console.log(user);
 
 	const handleComment = async (e) => {
 		const finalComment = `${user.profile.name} ${comment}`;

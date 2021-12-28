@@ -114,10 +114,13 @@ export const commentPost = (value, id) => async (dispatch) => {
 
 export const deletePost = (id) => async (dispatch) => {
 	try {
-		
+		// dispatch({ type: START_LOADING });
 		await api.deletePost(id);
 
 		dispatch({ type: DELETE_POST, payload: id });
+
+		await api.fetchPost();
+		// dispatch({ type: END_LOADING });
 	} catch (error) {
 		console.log(error);
 	}

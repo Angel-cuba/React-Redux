@@ -56,7 +56,7 @@ const Navbar = () => {
 							<Typography variant="h5">All Posts</Typography>
 						</div>
 					) : (
-						'Memories '
+						'Memories'
 					)}
 				</Typography>
 			</Paper>

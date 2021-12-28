@@ -13,23 +13,17 @@ function useQuery() {
 const UserPosts = () => {
 	const { isLoading, posts } = useSelector((state) => state.posts);
 
-	const location = useLocation();
-	console.log('location----' + location.pathname);
-
-	console.log(posts);
-
 	const classes = useStyles();
 	const query = useQuery();
 	const page = query.get('page') || 1;
 
 	const [userId, setUserId] = useState();
-	console.log(userId);
+
 	const dispatch = useDispatch();
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('profile'));
 
 		setUserId(user.profile._id);
-		// dispatch(getPostByUserId(userId));
 	}, []);
 
 	useEffect(() => {

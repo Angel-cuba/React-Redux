@@ -29,7 +29,8 @@ const EachPostOfUser = ({ post, userId, isLoading }) => {
 
 	const deleteThisPost = async () => {
 		dispatch(deletePost(_id));
-		window.location.reload(true);
+		// window.location.reload();
+		history.push('/');
 	};
 
 	const handleLikes = async () => {

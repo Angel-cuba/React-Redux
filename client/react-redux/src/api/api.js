@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// const url = 'http://localhost:3002/api'
-// const userUrl = 'http://localhost:3002/api/user'
-
 const API = axios.create({ baseURL: 'http://localhost:3002/api' });
 //const API = axios.create({ baseURL: 'https://react-redux-mongo-db.herokuapp.com/api' });
 

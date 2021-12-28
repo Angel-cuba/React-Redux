@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const Posts = ({ setCurrentId }) => {
 	const { posts, isLoading } = useSelector((state) => state.posts);
 	const classes = useStyles();
-	console.log(posts);
 
 	const user = JSON.parse(localStorage.getItem('profile'));
 

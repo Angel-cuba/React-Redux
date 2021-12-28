@@ -20,7 +20,7 @@ module.exports = (app) => {
 	//MIDDLEWARES
 	// app.use(cors());
 	const corsOptions = {
-		//	origin: 'https://sleepy-ardinghelli-519d00.netlify.app',
+		//	origin: 'https://angry-benz-fb754d.netlify.app',
 		origin: '*',
 		credentials: true, //access-control-allow-credentials:true
 		optionSuccessStatus: 200,

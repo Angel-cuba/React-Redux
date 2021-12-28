@@ -37,7 +37,6 @@ const Form = ({ currentId, setCurrentId }) => {
 		if (currentId) {
 			dispatch(updatePost(currentId, { ...postData, name: user.profile.name }));
 		} else {
-			// console.log(postData);
 			dispatch(createPost({ ...postData, name: user.profile.name }, history));
 
 			history.push('/');
